@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/python
 
 import socket 
 from termcolor import colored
@@ -14,7 +14,7 @@ host = raw_input("[*] Enter host to scan: ")
 
 def portScanner(port):
         if sock.connect_ex((host,port)):
-            print(colored("port %d closed" % (port), 'red'))
+            print(colored("port %d closed" %(port), 'red'))
         else: 
             print(colored("port %d open"  %(port), 'green'))
 

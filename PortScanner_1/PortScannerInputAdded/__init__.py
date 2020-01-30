@@ -4,7 +4,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 socket.setdefaulttimeout(3)
 
-host = raw_input("[*] Enter the host to scan: ")
+host = input("[*] Enter the host to scan: ")
 
 port = int(input("[*] Enter the port to scan: "))
 

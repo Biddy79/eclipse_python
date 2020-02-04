@@ -1,3 +1,4 @@
+from _overlapped import NULL
 
 parrot = "Norwegian Blue"
 
@@ -27,7 +28,7 @@ print(parrot[-6])
 
 print()
 
-#same as befor this time subtracting to give correct index
+#same as before this time subtracting to give correct index
 
 print(parrot[3 - 14])
 print(parrot[4 - 14])
@@ -49,3 +50,22 @@ print(parrot[10:]) # Blue same as befor but if last value it will defalut to end
 #slicing can be used with mathmatical oparotors 
 print(parrot[:6] + parrot[6:]) # prints lines 0 to 6 + line 6 to 14 Norwegian Blue
 print(parrot[:]) #prints from the begining of the string to the end
+
+print()
+
+#print we win using negative slicing
+
+# 01234567890123
+# Norwegian Blue
+
+print(parrot[-11:-10])
+print(parrot[-1:])
+print(parrot[-5:-6])
+print(parrot[-11:-10])
+print(parrot[-8:-7])
+print(parrot[-6:-5])
+
+print()
+
+#print blue using negative slicing
+print(parrot[-4:])

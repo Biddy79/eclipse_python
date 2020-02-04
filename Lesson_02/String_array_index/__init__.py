@@ -69,3 +69,12 @@ print()
 
 #print blue using negative slicing
 print(parrot[-4:])
+
+
+#slicing 
+
+num = "100,200,300,400,500"
+print(num[0:18:4])
+
+
+

@@ -5,7 +5,7 @@ print(a + b / 3 - 4 * 12)
 
 #operator order
 
-# division and multiplication come before addition and subtraction
+#  multiplication then division come before addition and then subtraction
 
 
 # * / + -

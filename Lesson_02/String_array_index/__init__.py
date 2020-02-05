@@ -1,5 +1,3 @@
-from _overlapped import NULL
-
 parrot = "Norwegian Blue"
 
 print(parrot) 
@@ -75,6 +73,32 @@ print(parrot[-4:])
 
 num = "100,200,300,400,500"
 print(num[0:18:4])
+
+print()
+
+#slicing backwards
+            
+letters = "abcdefghigklmnopqrstuvwxyz"
+
+#::-1 reverses the string
+backwards = letters[::-1]
+print(backwards)
+
+#-1 means count backwards from 16 to 13 take not first number is always larger
+qpo = letters[16:13:-1]
+print(qpo)
+edcba = letters[4::-1]
+print(edcba)
+zyxwvuts = letters[:17:-1]
+print(zyxwvuts)
+
+
+
+
+
+
+
+
 
 
 

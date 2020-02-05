@@ -15,7 +15,7 @@ print(parrot[8])
 
 print()
 
-#same as befor this time using negative indexing
+#same as before this time using negative indexing
 
 print(parrot[-11])
 print(parrot[-1])
@@ -39,8 +39,8 @@ print()
 
 #slicing using :
 
-print(parrot[0:6]) # Norweg  #prints from value 0 upto BUT NOT INCLUDE 6 !!!!!
-print(parrot[3:5]) # we      #prints from vale 3 upto BUT NOT INCLUDING 5 !!!!
+print(parrot[0:6]) # Norweg  #prints from value 0 up to BUT NOT INCLUDE 6 !!!!!
+print(parrot[3:5]) # we      #prints from vale 3 up to BUT NOT INCLUDING 5 !!!!
 print(parrot[:9])  # Norwegian Note if no start index is give 0 is default 
 print(parrot[10:14]) # Blue
 print(parrot[10:]) # Blue same as befor but if last value it will defalut to end value null ptr 
@@ -55,7 +55,7 @@ print()
 
 # 01234567890123
 # Norwegian Blue
-
+  
 print(parrot[-11:-10])
 print(parrot[-1:])
 print(parrot[-5:-6])

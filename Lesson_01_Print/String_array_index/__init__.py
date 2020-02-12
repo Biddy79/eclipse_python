@@ -4,7 +4,7 @@ print(parrot)
 
 print()
 
-#print out we win (each carictor on a new line)
+#print out we win (each characters on a new line)
 
 print(parrot[3])
 print(parrot[4])
@@ -43,11 +43,11 @@ print(parrot[0:6]) # Norweg  #prints from value 0 up to BUT NOT INCLUDE 6 !!!!!
 print(parrot[3:5]) # we      #prints from vale 3 up to BUT NOT INCLUDING 5 !!!!
 print(parrot[:9])  # Norwegian Note if no start index is give 0 is default 
 print(parrot[10:14]) # Blue
-print(parrot[10:]) # Blue same as befor but if last value it will defalut to end value null ptr 
+print(parrot[10:]) # Blue same as before but if last value it will default to end value null ptr 
 
-#slicing can be used with mathmatical oparotors 
+#slicing can be used with mathematical oparotors 
 print(parrot[:6] + parrot[6:]) # prints lines 0 to 6 + line 6 to 14 Norwegian Blue
-print(parrot[:]) #prints from the begining of the string to the end
+print(parrot[:]) #prints from the beginning of the string to the end
 
 print()
 

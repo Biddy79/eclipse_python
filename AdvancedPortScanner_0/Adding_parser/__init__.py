@@ -19,7 +19,7 @@
 
 import argparse
 
-def main():
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Usage of program: -tgtHost <target host> -tgtPost <taget port>")
 
     #parser add argument   #name    #help description             #variable type
@@ -34,15 +34,17 @@ def main():
     tgtPort = str(args.tgtPort).split(',')
     
     #checking if tgtHost or tgtPort are == to empty string if so print description
-    if tgtHost == "" or tgtPort == "":
+    if tgtHost == "" or tgtPort[0] == "":
         print(parser.description)
-        exit()
+        exit(0)
+    else:
+        print(f"Host Entered: {tgtHost}  Port Entered: {tgtPort}")
         
     #port scanner to be created!!!
     #portScan(tgtHost,tgtPorts)
         
-    print(parser.description)
     
     
-main()
+    
+
     

@@ -18,8 +18,20 @@
 #main()
 
 import argparse
+from _socket import gethostbyname, gethostbyaddr
 
-if __name__ == '__main__':
+def portScan(tgtHost, tgtPort):
+    try:
+        tgtIP = gethostbyname(tgtHost)
+    except:
+        print(f"Unknown Host {tgtHost} ")
+    try:
+        tgtName = gethostbyaddr(tgtIP)
+        print("[+] Scan results for:" + tgtName[0])
+    except:
+        print("[+] Scan results for: " + tgtIP)
+    
+def main():
     parser = argparse.ArgumentParser(description="Usage of program: -tgtHost <target host> -tgtPost <taget port>")
 
     #parser add argument   #name    #help description             #variable type
@@ -34,7 +46,7 @@ if __name__ == '__main__':
     tgtPort = str(args.tgtPort).split(',')
     
     #checking if tgtHost or tgtPort are == to empty string if so print description
-    if tgtHost == "" or tgtPort[0] == "":
+    if tgtHost == None or tgtPort[0] == None:
         print(parser.description)
         exit(0)
     else:
@@ -42,8 +54,9 @@ if __name__ == '__main__':
         
     #port scanner to be created!!!
     #portScan(tgtHost,tgtPorts)
-        
-    
+
+if __name__ == '__main__':
+    main()
     
     
 

@@ -1,3 +1,34 @@
+pack_list = ["Tooth Brush", "Jacket", "Shirt", "Shorts", "Trainners"]
+
+
+# for items in pack_list:
+#     if items != "Shirt":
+#         print(f"pack {items}")
+
+# same way of writing above code using keword continue
+for items in pack_list:
+    if items == "Shirt":
+        continue
+    print(f"pack {items}")
+
+print("-" *25)
+
+item_to_find = "Shirt"
+found_at = None
+
+for index in range(len(pack_list)):
+    if pack_list[index] == item_to_find:
+        found_at = index
+        break # adding break will make code more efficient as the loop will not continue !!
+        
+print(f"Item found at index {found_at}")
+        
+print("-" *25) 
+    
+
+
+
+
 colours = "Red Green Blue"
   
 for character in colours:
@@ -74,5 +105,10 @@ for i in range(0, 101):
     if i % 7 == 0:
         num = i
         print(num)
-    
+
+#Nested for loop
+for i in range(1,13):
+    for j in range(13):
+        print(f"{j} x {i} = {j*i}")
+    print("-" * 25)
     

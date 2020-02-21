@@ -18,18 +18,23 @@
 #invalid option. Do this without duplicating the print lines
 
 
-options = ["1: seconds", "2: minutes", "3: hours", "4: days", "5: weeks", "6: months", "7: years"]
+options = ["second", "minute", "hour", "day", "month", "year"]
 
 user_selection = ""
 list = ""
 exit = "0"
-
+print("select the format of time / date form list below")
 while user_selection != exit:
     for option in options:
         print(option)
-    user_selection = input("Please select how long you would like to rent the item for: ").casefold()
-    list += user_selection + " "
+    user_selection = input("Enter your selection. Or type 0 to exit: ").casefold()
+    if user_selection == exit:
+        break
+    elif user_selection in options:
+        print(f"{user_selection} added to your list \n Please make another selection: ")
+        list += user_selection + " " 
+    else:
+        print(f"{user_selection} is not a valid selection. please type one of the following")
     
-
-
-print(list)
+    
+print(f"You have selected the following time / date format: {list}")

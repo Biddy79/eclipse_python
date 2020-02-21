@@ -6,8 +6,8 @@ input("Please press enter to start")
  
 guesses = 1
  
-while True:
-    print(f"\t Guesses in the range {low } - {high} ")
+while low != high:
+    #print(f"\t Guesses in the range {low } - {high} ")
      
     #binary search algorithm 
     guess = low + (high - low) // 2
@@ -28,6 +28,8 @@ while True:
          
     #guesses = guesses + 1!!!!  better way. use augmeated assignment
     guesses +=1
-     
+else:
+    print(f"You though of the number {low}")
+    print(f"I got it in {guesses} guesses ")
      
 

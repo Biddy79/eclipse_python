@@ -9,7 +9,6 @@ while i < 10:
 direction = ["North", "East"]
   
 chosen = ""
-  
 while chosen not in direction:
     #chosen set to user input
     chosen = input("choose a different direction ")

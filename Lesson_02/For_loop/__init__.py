@@ -26,9 +26,6 @@ print(f"Item found at index {found_at}")
 print("-" *25) 
     
 
-
-
-
 colours = "Red Green Blue"
   
 for character in colours:

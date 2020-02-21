@@ -1,17 +1,17 @@
 high = 1000
 low = 1
-
+ 
 print(f"Please think of a number between {low} and {high}")
 input("Please press enter to start")
-
+ 
 guesses = 1
-
+ 
 while True:
     print(f"\t Guesses in the range {low } - {high} ")
-    
+     
     #binary search algorithm 
     guess = low + (high - low) // 2
-    
+     
     high_low = input("My guess is {} Should I guess higher or lower?"
                      " Enter h, l or c if my guess was correct".format(guess)).casefold()
     if high_low == "h":
@@ -25,5 +25,9 @@ while True:
         break
     else:
         print("Please enter h, l or c")
-        
-    guesses = guesses + 1
+         
+    #guesses = guesses + 1!!!!  better way. use augmeated assignment
+    guesses +=1
+     
+     
+

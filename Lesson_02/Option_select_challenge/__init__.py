@@ -16,3 +16,20 @@
 
 #As optional extra, modify the program so the menu is printed again if they choose an 
 #invalid option. Do this without duplicating the print lines
+
+
+options = ["1: seconds", "2: minutes", "3: hours", "4: days", "5: weeks", "6: months", "7: years"]
+
+user_selection = ""
+list = ""
+exit = "0"
+
+while user_selection != exit:
+    for option in options:
+        print(option)
+    user_selection = input("Please select how long you would like to rent the item for: ").casefold()
+    list += user_selection + " "
+    
+
+
+print(list)

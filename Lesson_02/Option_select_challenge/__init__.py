@@ -1,5 +1,5 @@
 #write a program to print a number of options, and allow the user to select an option from
-#the list. There must be more than 4 options and less than 9. 
+#the user_description. There must be more than 4 options and less than 9. 
 
 #The program should continue looping, allowing the user to choose one of the options each 
 #time round.
@@ -11,7 +11,7 @@
 #Don't print a different message for each choice - the only thing that should change is the 
 #number they typed.  
 
-#If their choice isn't one in the list of options nothing should be printed (although you
+#If their choice isn't one in the user_description of options nothing should be printed (although you
 #should see there input on the screen)
 
 #As optional extra, modify the program so the menu is printed again if they choose an 
@@ -21,9 +21,9 @@
 options = ["second", "minute", "hour", "day", "month", "year"]
 
 user_selection = ""
-list = ""
+user_description = ""
 exit = "0"
-print("select the format of time / date form list below")
+print("select the format of time / date form user_description below")
 while user_selection != exit:
     for option in options:
         print(option)
@@ -31,10 +31,10 @@ while user_selection != exit:
     if user_selection == exit:
         break
     elif user_selection in options:
-        print(f"{user_selection} added to your list \n Please make another selection: ")
-        list += user_selection + " " 
+        print(f"{user_selection} added to your user_description \n Please make another selection: ")
+        user_description += user_selection + " " 
     else:
         print(f"{user_selection} is not a valid selection. please type one of the following")
     
     
-print(f"You have selected the following time / date format: {list}")
+print(f"You have selected the following time / date format: {user_description}")

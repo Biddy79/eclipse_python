@@ -19,7 +19,7 @@ user_input = ""
 while True:
     user_input = input("SELECT OPTION 1,2,3, or 4: ")
     if user_input == "0":
-        print("goodbuy")
+        print("good buy")
         break
     elif user_input in "1234":
         print(f"You selected {user_input}")

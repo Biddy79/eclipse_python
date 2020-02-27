@@ -22,17 +22,17 @@ if new_numbers == numbers:
     print("true")
 else:
     print("false")
-#new_nubers is pointint to the same list therefor is the same     
+#new_nubers is  the same list therefore is the same     
 if new_numbers is numbers:
     print("true")
 else:
     print("false")
-#using list constructor to creat a new list passing numbers into the constructor
+#using list constructor to create a new list passing numbers into the constructor
 new_new_numbers = list(numbers)
 
 print("-" * 20)
 
-#new_new_nubers is its own copy of numbers therfore new_new_numbers is not numbers
+#new_new_nubers is its own copy of numbers therefore new_new_numbers is not numbers
 if new_new_numbers is numbers:
     print("true")
 else:

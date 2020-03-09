@@ -18,7 +18,7 @@ car1 = "BMW", "Z3", "2 SEATS", 1996
 car2 = "VW", "T5", "6 SEATS", 2003
 car3 = "FORD", "RANGER", "5 SEATS", 2015
 
-#prints all items in car1 list
+#prints all items in car1 tupel
 print(car1)
 #can also access items with in a tuple using array braket's
 print(car1[2])

@@ -1,24 +1,27 @@
-sing_in_record = ("B.A", 21, [00.00, 00.00])
+sing_in_record = "D.K ", 21, ([])
+#unpacking the tuple
+initials, age, time_in_out = sing_in_record
+    
+print(sing_in_record)
 
-#initials, age, time = sing_in_record 
-# print(initials)
-# print(age)
-# print(time[0], time[1])
+#these values cannot be changed as the are tuples
+initials = input(print("Enter first and last initials: "))
+age = input(print("Enter age: "))
 
-user_input = input(print("Enter first and last initials, your age time in and out"))
+#these values can be changed as they are list inside of tuple
+time_in = input(print("Enter Time in: "))
+time_out = input(print("Enter Time out: "))
 
-user_input = "".join(user_input.split())
+#below are two different ways of setting values in a list within a tuple
+sing_in_record[2].append((time_in))
 
-# print(user_input[0:2])
-# print(user_input[2:4])
-# print(user_input[4:9])
-# print(user_input[9:14])
+time_in_out.append((time_out))
 
+#iterating of items in tuple 
+for info in sing_in_record:
+    print(f"{info}", end = "")
+    
 
-
-for info in user_input:
-    for time in info:
-        info[0:2], info[2:4], time[4:9], time[9:14] = sing_in_record
 
 
 

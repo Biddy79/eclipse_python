@@ -14,4 +14,4 @@ print(artist)
 print(year)
 
 for song in tracks:
-    print(f"\t{song}")
+    print(title + f"\t{song}")

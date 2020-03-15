@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 
 import argparse
 from _socket import * 
@@ -34,7 +35,7 @@ def portScan(tgtHost, tgtPorts):
 def main():
     parser = argparse.ArgumentParser(description="Usage of program: -H <target host> -p <taget port>")
 
-    #parser add argument   #name    #help description             #variable type
+    #parser add argument #name    #help description             #variable type
     parser.add_argument('-H', help = 'specify target host', type = str)
     parser.add_argument('-p', help = 'specify target ports separated by comma', type = str)
     

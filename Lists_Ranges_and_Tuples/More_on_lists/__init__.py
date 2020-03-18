@@ -1,4 +1,4 @@
-from audioop import reverse
+
 list1 = []
 #creating a list using list constructor
 list2 = list()

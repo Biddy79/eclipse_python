@@ -30,7 +30,7 @@ odd = [1,3,5,7,9]
 numbers = even + odd
 
 #sort() function
-print(numbers.sort()) # this will out put None
+print(numbers.sort()) # this will out put None as it returns null
 
 #we must use sort() on numbers before printing 
 numbers.sort()

@@ -42,7 +42,7 @@ print(computer_parts)
 #computer_parts.clear() will remove all items and keys from dictionaries
 
 
-#looking if a entry exist's in  dictionaries
+#looking to see if a entry exist's in  dictionaries
 
 while True:
     dict_key = input("enter a computer part")

@@ -22,7 +22,31 @@ print(c_tuple)
 
 print("-" * 30)
 
-#the tuple can be use in the usual way
+#We can then access the keys and values in the tuple in the usual way 
+#like below
+item_0, decription_0 = c_tuple[0]
+print(item_0)
+print(decription_0)
+
+item_1, description_1 = c_tuple[1]
+print(item_1)
+print(description_1)
+
+print("-" * 30)
+
+#or using the for loop
 for parts in c_tuple:
     items, description = parts
     print(items + "-" + description)
+    
+print("-" * 30)
+    
+#We can convert c_tuple back to dictionaries 
+print(dict(c_tuple))
+
+    
+    
+    
+    
+    
+    

@@ -1,3 +1,10 @@
+#split
+user_input = input("Enter two words separated by a space something: ")
+#split will give an array of words separated them by space or comma
+print(user_input.split())
+
+print("-" * 30)
+
 #dictionaries 
 computer_parts = {"cpu": "central processing unit ",
                   "mother board": "main circuit board",

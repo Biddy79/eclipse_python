@@ -1,4 +1,7 @@
 #sets
+#for more info:        https://docs.python.org/2/library/sets.html
+
+
 #sets are not orded 
 Farm_animals = {"sheep", "cow", "pig"}
 print(Farm_animals)
@@ -25,6 +28,22 @@ Farm_animals.add("horse")
 print(Farm_animals)
 
 print("-" *30)
+
+#remove and discard
+Farm_animals.discard("horse")#removes horse
+print(Farm_animals)
+Farm_animals.remove("pig")
+print(Farm_animals)#removes pig
+
+#discard wil not through error if iteam not in set 
+Farm_animals.discard("chicken") # no error
+#remove will through error if not in set
+try:
+    Farm_animals.remove("chicken")
+except KeyError:
+    print("The animal is not in Farm animels")
+
+print("-" * 30)
 
 #range can be used in a set
 even = set(range(0,40,2))
@@ -80,6 +99,51 @@ print("-" * 30)
 print(even)
 print(sorted(squares.difference(even)))
 #print(squares - even)
+
+print("-" *30)
+
+#symmetric difference
+#elements present in either of the two sets, but not common to both the sets
+set_A = {1,2,3,4,5}
+set_B = {1,3,5,6,9}
+#2,4,6,9 will be returned as they are not in both sets
+print(set_A.symmetric_difference(set_B))
+#symmetric_difference() can also be written as ^ this is same as above
+print(set_A ^ set_B)
+
+print("-" * 30)
+
+set_C = {5,10,15,20}
+set_D = {5,10,15,20,25,30}
+
+#issuperset
+#The issuperset() method returns True if a set has every elements of another set
+#(but it may also contain other elements).
+#(passed as an argument).
+#If not, it returns False.
+
+# here True is retured as set_D as all elements of set_B (include extra elements 25,30)
+print(set_D.issuperset(set_C)) 
+
+#issubset
+#The issubset() method returns True if all items in the set
+#exists in the specified set, otherwise it retuns False.
+
+#here False is returned as set_D dose not have all the elements of set_C
+print(set_D.issubset(set_C))
+
+print("-" * 30)
+
+#frozen set
+
+set_E = frozenset(range(0,10,3))
+#frozanset is immutabel. we can NOT add or remove from a frozan set 
+print(set_E)
+
+#set_E.add(12) will trown error: 'frozenset' object has no attribute 'add'
+
+
+
 
 
 

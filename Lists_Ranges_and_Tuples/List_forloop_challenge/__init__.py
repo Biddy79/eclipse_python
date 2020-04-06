@@ -1,7 +1,7 @@
 #add to the program below so that if it finds a meal without spam
 #it prints out each of the ingredients of the meal 
 
-menu= []
+menu = []
 menu.append(["egg", "spam", "bacon"])
 menu.append(["egg", "sausage", "bacon"])
 menu.append(["egg", "spam"])

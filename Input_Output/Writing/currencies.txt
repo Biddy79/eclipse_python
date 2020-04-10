@@ -1,0 +1,4 @@
+USD
+EURO
+GBP
+JPY

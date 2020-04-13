@@ -3,7 +3,6 @@
 
 # python_description = open("/home/adam/src/eclipse_python/Input_Output/Python_Description.txt", 'r')
 # 
-# 
 # #Basic reading of .txt file using a for loop  
 #  
 # for line in python_description:

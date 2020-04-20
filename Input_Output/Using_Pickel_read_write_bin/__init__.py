@@ -41,6 +41,7 @@ print("-" * 30)
 stock_left = [12, "Manchester", 10, "Sheffield", 2, "Newcastle"]
 
 #using dump to now add stock_left list to computer.bin
+#pickled.dump() parameters: item to be saved, file name, and protocol
 with open("computer.bin", 'wb') as pickle_file:
     pickle.dump(computer, pickle_file)
     pickle.dump(stock_left, pickle_file)
@@ -49,6 +50,7 @@ with open("computer.bin", 'wb') as pickle_file:
     pickle.dump(total_stock, pickle_file)
     
 #now reading computer.bin after dump of new items
+#when reading items must be loaded in same order they where dump() into file
 with open("computer.bin", 'rb') as computer_pickled:
     computer = pickle.load(computer_pickled)
     stock_and_area = pickle.load(computer_pickled)
@@ -71,7 +73,8 @@ print(stock_and_area)
 print(total_stock)
     
 
-
+#note protocols are not backwards compatible and there are safety concerns when loading pickled files
+#from unknown source as this could have system commands with in 
     
     
     

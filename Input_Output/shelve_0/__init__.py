@@ -3,8 +3,14 @@
   
 #A shelve object is a lot like a Dictionaries in that it as key value pairs and uses the same functions()
 
+#take note keys must be string objects but values can be any object type
+
 #one big difference is that it sorts its values in a file and not memory and the values are pickle 
 #when saved.
+
+#shelve may not be suitable for every application as the process of pickleing and unpickleing
+#can be slow therefore it may be better to use other data bases systems like sql
+#Also it may not work well on other systems 
 
 #again it is not wise to use shelve from untrusted source as it could contain system commands when loaded
 

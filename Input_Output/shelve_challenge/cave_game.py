@@ -1,7 +1,13 @@
+'''
+Created on 24 Apr 2020
+
+@author: Adam
+'''
 import shelve
 
 locations = shelve.open('locations')
 vocabulary = shelve.open('vocabulary')
+
 
 loc = '1'
 while True:
@@ -31,5 +37,8 @@ while True:
     else:
         print("You cannot go in that direction")
         
+
 vocabulary.close()
 locations.close()
+    
+    

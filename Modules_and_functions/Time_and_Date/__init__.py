@@ -14,7 +14,7 @@ print(time.localtime())
 #gettime() returns tuple with local time year date in UTC  
 print(time.gmtime())
 
-#gettime(0) returns tuple with year, date, and time of start of epoch
+#gmtime(0) returns tuple with year, date, and time of start of epoch
 print(time.gmtime(0))
 
 #naming time method to access tuple data
@@ -25,6 +25,10 @@ print(f"year: {time_here[0]}")
 
 #acsessing year in tupel returned from localtime() using name
 print(f"year: {time_here.tm_year}")
+
+#strftime() formats given function localtime, gmtime ect with placement fields '%Y %m' ect 
+#see time python doc for list of placement fields
+print(time.strftime('%Y-%m-%d %H-%M-%S', time.localtime()))
 
 print("-" * 30)
 

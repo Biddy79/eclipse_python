@@ -2,7 +2,7 @@ import pytz
 import datetime
 #pytz gets its time zone information form the data base iana: Internet Assigned Numbers Authority 
 
-#store country in a variable
+#store country name in a variable called country
 country = 'Canada/Mountain'
 
 tz_to_display = pytz.timezone(country)
@@ -30,13 +30,14 @@ print("-" * 30)
 #SOME COUNTRYS HAVE MORE THAN ONE TIME ZONE THEFORE YOU MAY WANT TO LIST ALL THE TIME ZONES FOR 
 #A GIVEN COUNTRY. YOU ME BE TEMPTED TO DO SO LIKE THIS 
 
-#THIS WILL GIVE ERROR AS BOTH pytz.country_names[x] AND pytz.country_timezones[x] DO NOT AVES THE 
+#for x in sorted(pytz.country_names):
+#    print(f"{x}, {pytz.country_names[x]}, {pytz.country_timezones[x]} ")
+
+#THIS WILL GIVE ERROR AS BOTH pytz.country_names[x] AND pytz.country_timezones[x] DO NOT HAVE THE 
 #SAME KEYS AS THERE IS NO TIME ZONE FOR BV:BOUVET ISLAND. THERFOR WE CARNT USE THE SAME KEY
 #FOR BOTH pytz.country_names[x] and pytz.country_timezones[x]
 
-#for x in sorted(pytz.country_names):
-#    print(f"{x}, {pytz.country_names[x]}, {pytz.country_timezones[x]} ")
-    
+
 #THE WAY TO DO THIS is by using .get(x) THIS WILL RETURN NONE IF pytz.country_timezones[x]
 #IS NOT IN THE LIST AND WILL THERFOR NOT SHOW ERROR
 ################################################

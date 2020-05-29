@@ -13,6 +13,7 @@
 
 import datetime
 import pytz
+from _datetime import date
     
 countrys = {"1": 'Mexico/BajaNorte',
             "2": 'Pacific/Easter',
@@ -29,15 +30,18 @@ for x in countrys:
     print(f"{x}: {countrys[x]}")
     
 
-
 while True:
     user_input = input("\nEnter 1 to 9 to select a country from the list. 0 will quit the program")
-    if user_input not in dict.keys(countrys):
-        print("you have made an invalid entry") 
-    elif user_input == "0":
+    if user_input == "0":
         print("Goodbuy.")
         break
-print(countrys[user_input])
+    elif user_input not in dict.keys(countrys):
+        print("you have made an invalid entry")
+    else:
+        dz_to_display = pytz.timezone(countrys[user_input])
+        local_time = datetime.datetime.now(tz=dz_to_display)
+        print(f"local date and time in {countrys[user_input]} is {local_time}")
+    
     
 
 

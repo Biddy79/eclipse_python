@@ -1,5 +1,3 @@
-from tkinter import Canvas
-from platform import release
 try: 
     import tkinter
 except ImportError:

@@ -3,9 +3,13 @@ try:
 except ImportError:
     import Tkinter as tkinter
 
-#Note!    
+#Notes!    
 #.grid() uses row and column to set grid lay out over mainWindow
 #.grid() also uses stick. this sets position using, north, south, east, and west ('n','s','e','w')
+
+#try to visualize a grid over main window split into rows and columns creating boxes. 
+#These can then have frame's within them which can then have widgets buttons ect. inside of them also.
+#All of these can then be manipulated using functions such as grid(), columnconfigure(), config() ect..
 
 #careful not to confuse columnconfigure() with config()  
 
@@ -36,6 +40,7 @@ button2.grid(row=1, column=0)
 button3.grid(row=2, column=0)
 
 #configure the columns in mainWindow. Adding weight to columns will populate empty space in column 
+#setting them central and expanding out
 mainWindow.columnconfigure(0, weight=1)
 mainWindow.columnconfigure(1, weight=1)
 mainWindow.grid_columnconfigure(2, weight=1) #grid_columnconfigure is the same as columnconfigure

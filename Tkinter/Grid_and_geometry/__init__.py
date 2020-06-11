@@ -39,8 +39,12 @@ button1.grid(row=0, column=0)
 button2.grid(row=1, column=0)
 button3.grid(row=2, column=0)
 
-#configure the columns in mainWindow. Adding weight to columns will populate empty space in column 
-#setting them central and expanding out
+#setting weight in row or column will cores the cell area within
+#to populate more space (IF FREE).
+#The higher the weight number the grater president it as over the other cell's
+#This will then cores items with in the area to appear larger
+
+#configure the columns in mainWindow.
 mainWindow.columnconfigure(0, weight=1)
 mainWindow.columnconfigure(1, weight=1)
 mainWindow.grid_columnconfigure(2, weight=1) #grid_columnconfigure is the same as columnconfigure
@@ -51,7 +55,7 @@ leftFrame.config(relief='sunken', borderwidth=1)
 rightFrame.config(relief='sunken', borderwidth=1)
 
 #grid(sticky= ) is used here to stretch the sunken boarder
-#using the compass references points: 'ns', 'new' 
+#using the compass references points: 'ns', and 'new' 
 leftFrame.grid(sticky='ns')
 rightFrame.grid(sticky='new')
 

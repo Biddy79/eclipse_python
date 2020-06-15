@@ -1,5 +1,3 @@
-from aptdaemon.loop import mainloop
-from pkg_resources._vendor.packaging.markers import Variable
 try:
     import tkinter
 except ImportError:
@@ -9,7 +7,7 @@ import os
 
 mainWindow = tkinter.Tk()
 
-mainWindow.geometry('800x580-1200-400')
+mainWindow.geometry('800x580-200-100')
 mainWindow.title("Grid Demo")
 
 label = tkinter.Label(mainWindow, text="Tkinter Grid Demo")
@@ -39,7 +37,7 @@ fileList.grid(row=1,column=0, sticky='nsew',rowspan=2)#rowspan sets number of ro
 fileList.config(border=2, relief='raised')
 
 #inserting directory of file to fileList box
-for zone in os.listdir('/usr/bin'): # '/Windows/System32' 
+for zone in os.listdir('/Windows/System32'): # '/Windows/System32' 
     fileList.insert(tkinter.END, zone) #tkinter.END specify order to add list items
     
 #adding scroll bar to fileList
@@ -71,6 +69,32 @@ radio3 = tkinter.Radiobutton(optionFrame, text="Timestamp", value=3, variable=rb
 radio1.grid(row=0, column=0, sticky='w')
 radio2.grid(row=1, column=0, sticky='w')
 radio3.grid(row=2, column=0, sticky='w')
+
+#results label
+resultLabel = tkinter.Label(mainWindow, text='Result')
+resultLabel.grid(row=2, column=2, sticky='nw')
+#result box
+result = tkinter.Entry(mainWindow)
+result.grid(row=2, column=2, sticky='sw')
+
+#Frame for time spinners
+timeFrame = tkinter.LabelFrame(mainWindow, text='Time')
+#positioning timeFrame inside mainWindow
+timeFrame.grid(row=3, column=0, sticky='new')
+
+#time spinners 
+hourSpinner = tkinter.Spinbox(timeFrame, width=2, values=tuple(range(0,24)))
+minuteSpinner = tkinter.Spinbox(timeFrame, width=2, from_=0, to=59) #from is a key word 
+secondSpinner = tkinter.Spinbox(timeFrame, width=2, from_=0, to=59) #so we use _from
+
+#positioning time spinner inside timeFrame
+hourSpinner.grid(row=0, column=0)
+tkinter.Label(timeFrame, text=':').grid(row=0, column=1)#setting ':' between each time spinner
+minuteSpinner.grid(row=0, column=2) 
+tkinter.Label(timeFrame, text=':').grid(row=0, column=3)#setting ':' between each time spinner
+secondSpinner.grid(row=0,column=4)
+#adding padding 
+timeFrame['padx'] = 36
 
 
 mainWindow.mainloop()

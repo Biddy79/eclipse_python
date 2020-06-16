@@ -37,7 +37,7 @@ fileList.grid(row=1,column=0, sticky='nsew',rowspan=2)#rowspan sets number of ro
 fileList.config(border=2, relief='raised')
 
 #inserting directory of file to fileList box
-for zone in os.listdir('/Windows/System32'): # '/Windows/System32' 
+for zone in os.listdir('/usr/bin'): # '/Windows/System32' or '/usr/bin'
     fileList.insert(tkinter.END, zone) #tkinter.END specify order to add list items
     
 #adding scroll bar to fileList
@@ -94,7 +94,30 @@ minuteSpinner.grid(row=0, column=2)
 tkinter.Label(timeFrame, text=':').grid(row=0, column=3)#setting ':' between each time spinner
 secondSpinner.grid(row=0,column=4)
 #adding padding 
-timeFrame['padx'] = 36
+timeFrame['padx'] = 36 #'padx' adds padding on x axis, 'pady' adds padding on y axis  
+
+#Frame for date spinners
+dateFrame = tkinter.Frame(mainWindow)
+#position dateFrame inside mainWinow
+dateFrame.grid(row='4', column='0', sticky='new')
+
+#date labels
+dayLabel = tkinter.Label(dateFrame, text='Day')
+monthLabel = tkinter.Label(dateFrame, text='Month')
+yearLabel = tkinter.Label(dateFrame, text='Year')
+#position day month year labels inside of dateFrame
+dayLabel.grid(row=0, column=0, sticky='w')
+monthLabel.grid(row=0, column=1, sticky='w')
+yearLabel.grid(row=0, column=2, sticky='w')
+
+#date spinners added to dateFrame 
+daySpin = tkinter.Spinbox(dateFrame, width=5, from_=1, to=31)
+monthSpin = tkinter.Spinbox(dateFrame, width=5, from_=1, to=12)
+yearSpin = tkinter.Spinbox(dateFrame, width=5, from_=2000, to=2099)
+#position day month year Spinbox inside dateFrame
+daySpin.grid(row=1, column=0)
+monthSpin.grid(row=1, column=1)
+yearSpin.grid(row=1, column=2)
 
 
 mainWindow.mainloop()

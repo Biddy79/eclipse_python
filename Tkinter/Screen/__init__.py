@@ -9,6 +9,8 @@ mainWindow = tkinter.Tk()
 
 mainWindow.geometry('800x580-200-100')
 mainWindow.title("Grid Demo")
+#adding padding. 'padx' adds padding on x axis, 'pady' adds padding on y axis  
+mainWindow['padx'] = 8
 
 label = tkinter.Label(mainWindow, text="Tkinter Grid Demo")
 label.grid(row=0,column=0, columnspan=3)# columnspan sets number of columns to span over
@@ -18,12 +20,16 @@ label.grid(row=0,column=0, columnspan=3)# columnspan sets number of columns to s
 #The higher the weight number the grater president it as over the other cell's
 #This will then cores items with in the area to appear larger
 
+#When using the command= parameter on line's 48 and 126 we do not
+#use () at the end like when calling a function as we are setting command equal 
+#to the function 
+
 #set weight in each column
-mainWindow.columnconfigure(0, weight=1)
+mainWindow.columnconfigure(0, weight=100)
 mainWindow.columnconfigure(1, weight=1)
-mainWindow.columnconfigure(2, weight=3)
-mainWindow.columnconfigure(3, weight=3)
-mainWindow.columnconfigure(4, weight=3)
+mainWindow.columnconfigure(2, weight=1000)
+mainWindow.columnconfigure(3, weight=600)
+mainWindow.columnconfigure(4, weight=1000)
 #set weight in each row
 mainWindow.rowconfigure(0, weight=1)
 mainWindow.rowconfigure(1, weight=10)
@@ -118,6 +124,13 @@ yearSpin = tkinter.Spinbox(dateFrame, width=5, from_=2000, to=2099)
 daySpin.grid(row=1, column=0)
 monthSpin.grid(row=1, column=1)
 yearSpin.grid(row=1, column=2)
+
+#Buttons
+okButton = tkinter.Button(mainWindow, text="OK")
+cancelButton = tkinter.Button(mainWindow, text="Cancel",command=mainWindow.destroy)
+#position buttons ok and cancel inside of mainWindow 
+okButton.grid(row=4, column=3, sticky='e')
+cancelButton.grid(row=4, column=4, sticky='w')
 
 
 mainWindow.mainloop()

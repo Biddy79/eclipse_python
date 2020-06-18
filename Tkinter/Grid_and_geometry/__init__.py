@@ -43,6 +43,7 @@ button3.grid(row=2, column=0)
 #to populate more space (IF FREE).
 #The higher the weight number the grater president it as over the other cell's
 #This will then cores items with in the area to appear larger
+#this will affect the size of widgets more greatly when resize the mainWindow 
 
 #configure the columns in mainWindow.
 mainWindow.columnconfigure(0, weight=1)

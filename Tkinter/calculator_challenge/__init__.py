@@ -33,6 +33,9 @@ mainWindow = tkinter.Tk()
 mainWindow.geometry('300x375-1200-400')
 mainWindow.title("Calculator")
 
+mainWindow.minsize('200', '250')
+
+mainWindow['padx'] = 2
 
 mainWindow.rowconfigure(0, weight=0)
 mainWindow.rowconfigure(1, weight=0)
@@ -104,8 +107,30 @@ Button_equal.grid(row=5, column=1, sticky='ew', columnspan=2)
 Button_slash = tkinter.Button(mainWindow, text='/')
 Button_slash.grid(row=5, column=3, sticky='ew')
 
+#Calculator 2 using for loop 
+
+mainWindow_2 = tkinter.Tk()
+
+mainWindow_2.geometry('300x375-1200-400')
+mainWindow_2.title("Calculator")
+
+mainWindow_2.minsize('200', '250')
+
+mainWindow_2['padx'] = 2
+
+button_list = ['C', 'CE', '7', '8', '9', '+', '4', '5', '6', '-',
+               '1', '2', '3', '*', '0', '=', '/']
+
+for button in button_list:
+    row = 0
+    col = 0
+    new_button = tkinter.Button(mainWindow_2, text=button)
+    new_button.grid(row=row , column=col)
+
 
 mainWindow.mainloop()
+
+mainWindow_2.mainloop()
     
     
     

@@ -20,8 +20,6 @@
 # If you are using Windows you will probably find that the
 # width is already constrained and can't be resized too small.
 # The height will still need to be constrained, though.
-import tkinter
-from PIL.TiffImagePlugin import ROWSPERSTRIP
 
 try:
     import tkinter
@@ -118,12 +116,30 @@ mainWindow_2.minsize('200', '250')
 
 mainWindow_2['padx'] = 2
 
-button_list = [['C', 'CE'],
+
+button_list = [['C','CE'],
                ['7', '8', '9', '+'],
                ['4', '5', '6', '-'],
                ['1', '2', '3', '*'],
                ['0', '=', '/']]
 
+#below is just some of my working out
+# buttons = None
+# for button_list_array in button_list:
+#     for buttons in button_list_array:
+#         buttons = tkinter.Button(mainWindow_2, text=buttons)
+#         print(type(buttons))
+        
+for row in range(len(button_list)):
+    #print(row) my working out
+    for col in range(len(button_list[row])):
+        buttons = tkinter.Button(mainWindow_2, text=button_list[row][col])
+        #print(f"row: {row}, col: {col}")my working out
+        buttons.grid(row=row, column=col, sticky='ew')
+        
+        
+                
+                                   
 
 
 mainWindow.mainloop()

@@ -107,14 +107,14 @@ Button_slash.grid(row=5, column=3, sticky='ew')
 
 #Calculator 2 using for loop 
 
-mainWindow_2 = tkinter.Tk()
+mainWindow = tkinter.Tk()
 
-mainWindow_2.geometry('300x375-1200-850')
-mainWindow_2.title("Calculator")
+mainWindow.geometry('300x375-1200-850')
+mainWindow.title("Calculator")
 
-mainWindow_2.minsize('200', '250')
+mainWindow.minsize('200', '250')
 
-mainWindow_2['padx'] = 2
+mainWindow['padx'] = 2
 
 
 button_list = [['C','CE'],
@@ -127,13 +127,13 @@ button_list = [['C','CE'],
 # buttons = None
 # for button_list_array in button_list:
 #     for buttons in button_list_array:
-#         buttons = tkinter.Button(mainWindow_2, text=buttons)
+#         buttons = tkinter.Button(mainWindow, text=buttons)
 #         print(type(buttons))
         
 for row in range(len(button_list)):
     #print(row) my working out
     for col in range(len(button_list[row])):
-        buttons = tkinter.Button(mainWindow_2, text=button_list[row][col])
+        buttons = tkinter.Button(mainWindow, text=button_list[row][col])
         #print(f"row: {row}, col: {col}")my working out
         buttons.grid(row=row, column=col, sticky='ew')
         
@@ -144,7 +144,7 @@ for row in range(len(button_list)):
 
 mainWindow.mainloop()
 
-mainWindow_2.mainloop()
+mainWindow.mainloop()
     
     
     

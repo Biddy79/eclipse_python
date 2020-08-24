@@ -8,7 +8,7 @@ except ImportError: #python 2
 mainWindow = tkinter.Tk()
 
 def load_images(card_images):
-    suits=['heart', 'club', 'dimond', 'spade']
+    suits=['club', 'diamond', 'heart', 'spade']
     face_cards=['jack', 'queen', 'king']
     
     if tkinter.TkVersion >= 8.6:
@@ -18,17 +18,18 @@ def load_images(card_images):
         
     # for each suit, retrieve the image from the cards
     for suit in suits:
-        #first the numbe card 1 to 10
+        #first the number card 1 to 10
         for card in range(1, 11):
-            name = 'cards/{}_{}.{}'.format(str(card), suit, extension)
+            name = 'C:\\Users\\Adam\\src\\eclipse_python\\Blackjack\\blackjack\\cards\\{}_{}.{}'.format(str(card), suit, extension)
             image = tkinter.PhotoImage(file=name)
             card_images.append((card, image,))
             
+            
         #next the face cards
         for card in face_cards:
-            name = 'card/{}_{}.{}'.format(str(card), suit, extension)
+            name = 'C:\\Users\\Adam\\src\\eclipse_python\\Blackjack\\blackjack\\cards\\{}_{}.{}'.format(str(card), suit, extension)
             image = tkinter.PhotoImage(file=name)
-            card_images.append((10, image))
+            card_images.append((10, image,))
     
     
 #set up screen and frames for dealer nad player
@@ -65,4 +66,12 @@ dealer_button.grid(row=0, column=0)
 player_button = tkinter.Button(button_frame, text="Player")
 player_button.grid(row=0, column=1)
 
+
+
+#load cards
+cards = []
+load_images(cards)
+print(cards)
+
 mainWindow.mainloop()
+

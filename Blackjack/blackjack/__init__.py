@@ -205,7 +205,7 @@ dealer_hand = []
 player_hand = []
 
 #The play() function is resposibel for starting the program.
-#test to see if __name__ == "__main__
+#test to see if __name__ == "__main__"
 #If TRUE play() will be executed and the program will start
 #Therfor if file is imported it will not execute unless the play function is called and __name__ == "__main__"
 if __name__ == "__main__":   

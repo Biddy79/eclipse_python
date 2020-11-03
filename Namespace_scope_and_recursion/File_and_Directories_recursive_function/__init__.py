@@ -24,5 +24,7 @@ def list_directories(s):
     else:
         print(s+ " Does not exist")
     
+        
+list_directories('C:\\Users\\Adam\\Pictures')
 
-list_directories('.')
+

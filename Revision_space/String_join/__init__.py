@@ -3,14 +3,14 @@
 
 seq = "abc"
 
-new_seq = ' '.join(seq)
+new_seq = ':'.join(seq)
 
 print(new_seq)
 
 
 my_list = "I like winter"
-#' '.join(my_list) this will add a blank space between each leatter 
-# including its own white spaces
+#' '.join(my_list) this will add a blank space between each letter 
+#including its own white spaces
 my_list2 = ' '.join(my_list)
 # 0 1 2 3 4 5 6 7 8 9 . . . . . . . . . . . . . .
 #[I, , , ,l, ,i, ,k, ,e, , , ,w, ,i, ,t, ,e, ,r, ]
@@ -30,3 +30,11 @@ print(my_list3)
 
 #so this would now make element 5 in my_list3 the letter w
 print(my_list3[5])
+
+
+
+number_list1 = [1, 2, 3, 4, 5]
+
+number_list2 = [number_list1]
+
+print(number_list2)

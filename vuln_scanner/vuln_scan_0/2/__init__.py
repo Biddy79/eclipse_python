@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+#version 2
 import socket
 import os
 import sys
@@ -24,13 +24,15 @@ def checkVulns(banner, filename):
 
 
 def main():
+    filename = ""
+ 
     if len(sys.argv) == 2:
         filename = sys.argv[1]
-    if not os.path.isfile(filename):
-        print("[-] File dose not exist!")
-    if not os.access(filename, os.R_OK):
-        print("[-] File Access Denied!")
-        exit(0)
+        if not os.path.isfile(filename):
+            print("[-] File dose not exist!")
+        if not os.access(filename, os.R_OK):
+            print("[-] File Access Denied!")
+            exit(0)
     else:
         print(f"[-] Usage for : {sys.argv[0]} must add path file of <vuln.txt>")
         exit(0)
@@ -43,3 +45,6 @@ def main():
         if banner:
             print(f"[+] {ip}/{port} : banner")
             checkVulns(banner, filename)
+            
+
+main()            

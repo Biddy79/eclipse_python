@@ -4,6 +4,7 @@
 import socket
 import os
 import sys
+from pip._vendor.pyparsing import line
 
 
 def retBanner(ip, port):
@@ -17,11 +18,34 @@ def retBanner(ip, port):
         return
 
 def checkVulns(banner, filename):
+    fileList = []
+    #spliting returned banner at new line into list
+    bannerList = str(banner).split("\n")
+    
+    #adding banners (spliting at new elements at new line) to fileList
     with open(filename, 'r') as bannerFile:
         for line in bannerFile:
-            print(line.strip("\n"))
-
+            fileList += line.split("\n")
     
+    #printing elements in fileList
+    for f in fileList:
+        print(f.strip("'"))
+    
+    print("----------------------")
+    #printing elements in bannerList
+    #replace("\\r\\n", "") this replaces \\r and \\n with empty string
+    for b in bannerList:
+        print(b.replace("\\r\\n\'", ""))
+            
+    print("----------------------")
+    
+    #cheking to see if banner in bannerList is in fileList
+    for x in fileList:
+        for b in bannerList:
+            if x.strip("'") == b.replace("\r\n\'", ""):
+                print("banner match")
+            elif x != b:
+                print("No banner match")
         
 def main():
     filename = ""

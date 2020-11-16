@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-#version 3
+#version 4
 
 import socket
 import os
 import sys
-from pip._vendor.pyparsing import line
 
-
+#call to socket using ip and port. return banner 
 def retBanner(ip, port):
     try:
         socket.setdefaulttimeout(2)
@@ -17,36 +16,34 @@ def retBanner(ip, port):
     except:
         return
 
+#check file of vilnerable banners for match against returned banner
 def checkVulns(banner, filename):
+    #two list created
     fileList = []
-    #spliting returned banner at new line into list
+    #splitting returned banner at new line into list
     bannerList = str(banner).split("\n")
     
-    #adding banners (spliting at new elements at new line) to fileList
+    #adding banners to fileList, splitting at new line
     with open(filename, 'r') as bannerFile:
         for line in bannerFile:
             fileList += line.split("\n")
     
-    #printing elements in fileList
-    for f in fileList:
-        print(f.strip("'"))
-    
-    print("----------------------")
-    #printing elements in bannerList
-    #replace("\\r\\n", "") this replaces \\r, \\n and ,  with empty string
+    #check to see if bannerList and fileList have any matching banners
     for b in bannerList:
-        print(b.replace("\\r\\n\'", ""))
-            
-    print("----------------------")
+        if b.replace("\\r\\n'", "") not in fileList:
+            print(f"[+] No vulnerable banner found.")
     
-    #cheking to see if banner in bannerList is in fileList
+    #check for macthing banners in bannerList and filelist and print 
     for x in fileList:
-        for b in bannerList:
+        for b in bannerList: 
             if x.strip("'") == b.replace("\\r\\n'", ""):
-                print("banner match")
-            elif x != b:
-                print("No banner match")
-        
+                print(f"[+] vulnerable banner found: {x}")        
+
+#Ask user for .txt file (check file exists and can gain access)
+#Print out usage of program if no file is given
+#set ip and ports to scan
+#call to checkVulns
+
 def main():
     filename = ""
  
@@ -58,17 +55,18 @@ def main():
             print("[-] File Access Denied!")
             exit(0)
     else:
-        print(f"[-] Usage for : {sys.argv[0]} must add path file of <vuln.txt>")
+        print(f"[-] Usage for : {sys.argv[0]} must add path file of <vulnerable banners.txt>")
         exit(0)
 
     portlist = [21,22,25,80,110,443,445]
     ip = "192.168.8.117"
-        
+    
     for port in portlist:
         banner = retBanner(ip,port)
         if banner:
-            print(f"[+] {ip}/{port} :  banner")
+            print("-" *  30)
+            print(f"[+]Searching {ip}/{port} for vulnerable banners:")
             checkVulns(banner, filename)
-            
-
+            print("-" *  30)
+    
 main()            

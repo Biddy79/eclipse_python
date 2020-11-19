@@ -1,4 +1,4 @@
-#!/urs/python3
+#!/usr/bin/python3
 
 #Remote log in ssh login.
  
@@ -19,8 +19,8 @@ PROMPT = ['# ', '>>> ', '> ', '\$ ']
 def send_command(child, command):
     child.sendline(command)
     child.expect(PROMPT)
-    #child.befor will print output form target system 
-    print(child.before)
+    #child.befor will print output form target system. .decode() needed as out put is encoded
+    print(child.before.decode())
     
     
     

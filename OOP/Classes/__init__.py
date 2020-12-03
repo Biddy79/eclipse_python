@@ -19,13 +19,18 @@ print('-' * 30)
 #It is called as a constructor in object oriented terminology
 
 #The self parameter is a reference to the current instance of the class, 
-#and is used to access variables that belongs to the class.
+#and is used to access instence variables that belongs to the class.
 
 class dog(object):
     def __init__(self, name, age):
         self.name = name
         self.age = age
         self.vicious = False
+        
+    #Adding new method to class dog
+    def attack(self):
+        self.vicious = True
+        
         
 #Instantiate and instance of dog. seting Rover = to template of dog() 
 #passing in values name and age
@@ -40,4 +45,24 @@ billy = dog("Billy", 11)
 
 print(f"Dogs name is {billy.name} and he is {billy.age} years old")
 
+print("-" * 30)
+
+#printing vicious attribute set in constructor on line 28
+print(billy.vicious)
+#calling method attack on line 31 which changes attribute of vicious to True
+billy.attack()
+#printing out vicious after status being changed
+print(billy.vicious)
+
+print("-" * 30)
+
+#We can also add instance variables to class from out side of initial definition 
+Rover.colour = "brown"
+print(Rover.colour)
+#Take note not ever instance of dog class will have attribute colour!!!
+#Cannot do billy.colour !!!!!
+
+
+
+    
 

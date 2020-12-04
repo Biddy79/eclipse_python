@@ -9,12 +9,15 @@ class Account():
     def deposit(self, amount):
         if amount > 0:
             self.balance += amount
+            #call to method from within a method using self!!!!
+            self.show_balance()
         
     def withdraw(self, amount):
         if 0 < amount <= self.balance:
             self.balance -= amount
         else:
             print("Amount must be greater than 0 and must not exceed your balance")
+            #call to method from within a method using self!!!!
             self.show_balance()
             
     def show_balance(self):

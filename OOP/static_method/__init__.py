@@ -32,7 +32,6 @@ class Person():
         return ran_num
         
     
-    
     def set_id(self):
         self.ID = Person._random_id() 
         print(f"your id is {self.ID}")

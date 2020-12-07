@@ -13,6 +13,7 @@ print()
 
 name = "Bob"
 age = 25
+print(50 * age)
 
 print("may name is " + name)
 

@@ -15,7 +15,7 @@ class Account():
     def __init__(self, name, balance):
         self.name = name
         self.balance = balance
-        self.transaction_list = []
+        self.transaction_list = [(Account._current_time(), balance)]
         print(f"Account created for {self.name}")
         
     def deposit(self, amount):
@@ -62,5 +62,17 @@ if __name__ == '__main__':
     
     Adam.withdraw(500)
     Adam.show_transactions()
+    
+    print("-" * 30)
+    
+    Emma = Account("Emma", 800)
+    Emma.deposit(100)
+    Emma.withdraw(200)
+    Emma.show_transactions()
+    
+    
+    
+    
+    
     
     

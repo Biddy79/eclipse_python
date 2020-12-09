@@ -6,7 +6,6 @@ work_computer = computer
 #printing attribute of work computer
 print(work_computer.memory_size)
 
-
 #changing memory_size 
 work_computer.memory_size = 500
 print(f"Work computer memory size as now been changed to {work_computer.memory_size}")

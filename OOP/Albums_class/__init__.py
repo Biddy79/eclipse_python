@@ -32,7 +32,7 @@ class Album:
     """
     
     def __init__(self, name, year, artist=None):
-        self.album_name = name
+        self.name = name
         self.year = year 
         if artist is None:
             self.artist = Artist("Various Artist")
@@ -64,7 +64,7 @@ class Artist:
     
     Attributes: 
         name (str): The name of the artist
-        albums (list[Album]: A list of hte albums by this artist
+        albums (list[Album]: A list of the albums by this artist
             The list only includes those albums in this collection, it is
             not an exhaustive list of the artist's published albums.
             
@@ -73,7 +73,7 @@ class Artist:
     """
     def __init__(self, name):
         self.name = name
-        self.albuma = [] 
+        self.album = [] 
         
     def add_album(self, album):
         """ Add new album to the list.
@@ -84,38 +84,52 @@ class Artist:
                 (although this is yet to be implemented)
         """
         self.album.append(album)
-            
+        
+
+      
             
 #function to import ablums artist, album, year, song from a .txt file          
 def load_data():
     new_artist = None
     new_album = None
-    artist_list = []
-    
+    artist_list = [] 
+
     with open("albums.txt", "r") as albums:
         for line in albums:
             #data row should consist of (artist, album, year, song)
             artist_field, album_field, year_field, song_field = tuple(line.strip('\n').split('\t'))
             year_field = int(year_field)
-            print(artist_field, album_field, year_field, song_field)
+            print(f"{artist_field} {album_field} {year_field} {song_field}")
         
-        
-        
+            if new_artist is None:
+                new_artist = Artist(artist_field)
+            #chenking if artist name_field in .txt file as changed form object Artist.name
+            elif new_artist.name != artist_field:
+                #store current album object in current Artist class album[] list
+                new_artist.add_album(new_album)
+                #add artist to artist list on line 95
+                artist_list.append(new_artist)
+                #create new artist object
+                new_artist = Artist(artist_field)
+                new_album = None
+            
+            if new_album is None:
+                #create new Album object
+                new_album = Album(album_field, year_field, new_artist)
+            elif new_album.name != album_field:
+                new_artist.add_album(new_album)
+                new_album = Album(album_field, year_field, new_artist)
+                
+            if new_artist is None:
+                if new_album is None:
+                    new_artist.add_album(new_album)
+                artist_list.append(new_artist)
+                
+    return artist_list
+                
+                
 if __name__ == "__main__":
-    load_data()
-    
-    
-    
-    
-    
-        
-        
-        
-        
-        
-        
-    
-    
-    
+    artists = load_data()
+    print(f"There are {len(artists)} artists")
     
     

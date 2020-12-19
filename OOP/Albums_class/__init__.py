@@ -1,3 +1,4 @@
+from _operator import itemgetter
 class Song:
     """Class to represent a song
     
@@ -85,7 +86,12 @@ class Artist:
         """
         self.album.append(album)
         
-
+def find_object(field, object_list):
+    """Check object_list for object with name attribute equeal to field is so return"""
+    for item in object_list:
+        if item.name == field:
+            return item 
+    return None
       
             
 #function to import ablums artist, album, year, song from a .txt file          
@@ -103,36 +109,37 @@ def load_data():
         
             if new_artist is None:
                 new_artist = Artist(artist_field)
+                artist_list.append(new_artist)
             #chenking if artist name_field in .txt file as changed form object Artist.name
             elif new_artist.name != artist_field:
-                #store current album object in current Artist class album[] list
-                new_artist.add_album(new_album)
-                #add artist to artist list on line 95
-                artist_list.append(new_artist)
-                #create new artist object
-                new_artist = Artist(artist_field)
+                #retrieve the artist object if there is one
+                #otherwise create a new artist object and add it to artist list
+                new_artist = find_object(artist_field,artist_list)
+                if new_artist is None:
+                    new_artist = Artist(artist_field)
+                    artist_list.append(new_artist)
                 new_album = None
             
             if new_album is None:
                 #create new Album object if None
                 new_album = Album(album_field, year_field, new_artist)
+                #add new Album to album list in Artist class
+                new_artist.add_album(new_album)
             #check to see if album name as changed
             elif new_album.name != album_field:
-                #add album object to album list in Artist class object
-                new_artist.add_album(new_album)
-                #new Album object instantiated with new filed args
-                new_album = Album(album_field, year_field, new_artist)
+                #retrieve the album object if there is one
+                #otherwise create a new album object and add it to album list in Artist class
+                new_album = find_object(album_field, new_artist.album)
+                if new_album is None:
+                    new_album = Album(album_field, year_field, new_artist)
+                    #add album object to album list in Artist class object
+                    new_artist.add_album(new_album)
+                
             #create instance of Song object populate with song and artist field args
             new_song = Song(song_field, new_artist)
             #add new_song object to trak list in new_album object class
             new_album.add_song(new_song)    
-            
-        #After last line in .txt file we will have Artist and Album object that as not been stored 
-        #therfor we will add them here! 
-        if new_artist is not None:
-            if new_album is not None:
-                new_artist.add_album(new_album)
-            artist_list.append(new_artist)
+        
     #return a list of Artist and Album objects       
     return artist_list
 

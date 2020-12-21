@@ -85,6 +85,29 @@ class Artist:
         """
         self.album.append(album)
         
+    def add_song(self, name, year, title):
+        """Add a new song to collection of albums
+        
+        This method will add songs to album collection
+        A new album will be created in the collection if one dose't already exist
+        
+        Args:
+            name (str) the name of the album
+            year (int) the year of the album
+            title (str) title of song
+         """
+        album_found = find_object(name, self.album)
+        if album_found is None:
+            print(name + "not found")
+            album_found = Album(name, year, self)
+            self.add_album(album_found)
+        else:
+            print("Found album " + name)
+        
+        album_found.add_song(title)
+            
+            
+            
 def find_object(field, object_list):
     """Check object_list for object with name attribute equeal to field is so return"""
     for item in object_list:
@@ -95,8 +118,6 @@ def find_object(field, object_list):
             
 #function to import ablums artist, album, year, song from a .txt file          
 def load_data():
-    new_artist = None
-    new_album = None
     artist_list = [] 
 
     with open("albums.txt", "r") as albums:
@@ -106,40 +127,15 @@ def load_data():
             year_field = int(year_field)
             print(f"{artist_field} {album_field} {year_field} {song_field}")
         
-            if new_artist is None:
-                new_artist = Artist(artist_field)
-                artist_list.append(new_artist)
-            #chenking if artist name_field in .txt file as changed form object Artist.name
-            elif new_artist.name != artist_field:
-                #retrieve the artist object if there is one
-                #otherwise create a new artist object and add it to artist list
-                new_artist = find_object(artist_field,artist_list)
-                if new_artist is None:
-                    new_artist = Artist(artist_field)
-                    artist_list.append(new_artist)
-                new_album = None
-            
-            if new_album is None:
-                #create new Album object if None
-                new_album = Album(album_field, year_field, new_artist)
-                #add new Album to album list in Artist class
-                new_artist.add_album(new_album)
-            #check to see if album name as changed
-            elif new_album.name != album_field:
-                #retrieve the album object if there is one
-                #otherwise create a new album object and add it to album list in Artist class
-                new_album = find_object(album_field, new_artist.album)
-                if new_album is None:
-                    new_album = Album(album_field, year_field, new_artist)
-                    #add album object to album list in Artist class object
-                    new_artist.add_album(new_album)
-                
-            #create instance of Song object populate with song and artist field args
-            new_song = Song(song_field, new_artist)
-            #add new_song object to trak list in new_album object class
-            new_album.add_song(new_song)    
+        new_artist = find_object(artist_field, artist_list)
+        if new_artist is None:
+            new_artist = Artist(artist_field)
+            artist_list.append(new_artist)
         
-    #return a list of Artist and Album objects       
+        new_artist.add_song(album_field, year_field, song_field)
+        
+            
+            
     return artist_list
 
 def create_checkfile(artist_list):                
@@ -154,17 +150,4 @@ def create_checkfile(artist_list):
 if __name__ == "__main__":
     artists = load_data()
     
-    print(f"There are {len(artists)} artists")
-    
     create_checkfile(artists)
-
-    
-    #prints First artist name in .txt file
-    print(artists[0].name)
-    #prints forth artists third album name in .txt file
-    print(artists[3].album[2].name)
-    #prints third artists first album, second track name in .txt
-    print(artists[2].album[0].track[1].titel)
-    #prints third artist, first album second track artist(obj).name
-    print(artists[2].album[0].track[1].artist.name)
-    

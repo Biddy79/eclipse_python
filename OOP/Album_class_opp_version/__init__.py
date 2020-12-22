@@ -12,9 +12,11 @@ class Song:
         self.artist = artist
         self.duration = duration
 
-#prints out doc string for given class     
-print(Song.__doc__)
-
+    def get_titel(self):
+        return self.titel
+    
+    name = property(get_titel)
+    
 
 class Album:
     """ Class to represent an Album, using it's track list
@@ -45,19 +47,19 @@ class Album:
         """Adds a song to the track list
     
         Args:
-            song (Song): A song to add
+            song (Song): The title of the song to add
             position (optional[int]): If specified, the song will be added to that position
             in the track list - inserting it between other songs if necessary
             otherwise, the song will be added to the end of the list
         """
-        if position is None:
-            self.track.append(song)
-        else:
-            self.tracks.insert(position, song)
+        song_found = find_object(song, self.track)
+        if song_found is None:
+            song_found = Song(song, self.artist)
+            if position is None:
+                self.track.append(song_found)
+            else:
+                self.tracks.insert(position, song_found)
             
-#prints out doc string for Album Class with attributes and methods 
-help(Album)
-
 
 class Artist:
     """ Basic class to store artist details

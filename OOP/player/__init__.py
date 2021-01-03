@@ -24,7 +24,7 @@ class Player(object):
            Attributes:
                name (str) name of player passed in as arg
                _lives (int) number of lives player has
-               level (int) level of player 
+               _level (int) _level of player 
                score (int) score of player
                
                NOTE that _lives is prefixed with underscore. Tis will stop 
@@ -33,7 +33,7 @@ class Player(object):
         '''
         self.name = name
         self._lives = 3
-        self.level = 1
+        self._level = 1
         self.score = 0
         
     def _get_lives(self):
@@ -54,11 +54,31 @@ class Player(object):
             print("Lives cannot be negative")
             self._lives = 0
      
+    
+    
+    def _get_level(self):
+        return self._level
+    
+    def _set_level(self, level):
+        if level > 0:
+            delta = level - self._level
+            self.score += delta * 1000
+            self._level = level
+        else:
+            print("Level cannot be less than 1")
+            
+            
+            
     #The property() method in Python provides an interface to instance attributes.
     #It encapsulates instance attributes and provides a property. 
     #The property() method takes the get, set and delete methods as arguments
-    #and returns an object of the property class.  
+    #and returns an object of the property class.
+    #We can now make calls to the _get and _set methods by just using lives or level
+    #and therfore we go loger need to use () brackes to call the methods 
+    
     lives = property(_get_lives, _set_lives)
+    level = property(_get_level, _set_level)        
+        
     
     
     def __str__(self):
@@ -69,7 +89,7 @@ class Player(object):
             
             
         '''
-        return f"Name {self.name}, Lives {self.lives}, Level {self.level}, Score {self.score}"
+        return f"Name {self.name}, Lives {self.lives}, Level {self._level}, Score {self.score}"
         
         
         

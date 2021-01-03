@@ -5,7 +5,7 @@ Adam = Player("Adam")
 #printing out all attributes of Player class
 print(Adam.name)
 print(Adam.lives)
-print(Adam.level)
+print(Adam._level)
 print(Adam.score)
 
 #printing out lives attribute using _get_lives method
@@ -21,6 +21,8 @@ Adam.lives -= 10
 #Agine printing out the lives attribute
 print(Adam.lives)
 
+
+
 #trying to set lives to negative number using _set_lives method. this will give a priinted warrning
 #This is implemented in Player class inside of _set_lives method
 Adam._set_lives(-5)
@@ -28,3 +30,17 @@ Adam._set_lives(-5)
 
 #printin Adam object. Method __str__  is implemented in Player class
 print(Adam)
+
+print("-" * 30)
+
+#using the level the property method in player class to pass 2 as arg into _set_level method
+Adam.level = 2
+print(Adam.score)
+
+Adam.level += 5
+print(Adam)
+
+Adam.level = 3
+print(Adam)
+
+

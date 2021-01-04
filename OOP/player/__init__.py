@@ -25,7 +25,7 @@ class Player(object):
                name (str) name of player passed in as arg
                _lives (int) number of lives player has
                _level (int) _level of player 
-               score (int) score of player
+               _score (int) _score of player
                
                NOTE that _lives is prefixed with underscore. Tis will stop 
                recursion when lives is passed to _set_lives method as they will 
@@ -34,7 +34,7 @@ class Player(object):
         self.name = name
         self._lives = 3
         self._level = 1
-        self.score = 0
+        self._score = 0
         
     def _get_lives(self):
         '''Simpel getter method that returs players lives attribute
@@ -62,7 +62,7 @@ class Player(object):
     def _set_level(self, level):
         if level > 0:
             delta = level - self._level
-            self.score += delta * 1000
+            self._score += delta * 1000
             self._level = level
         else:
             print("Level cannot be less than 1")
@@ -74,11 +74,19 @@ class Player(object):
     #The property() method takes the get, set and delete methods as arguments
     #and returns an object of the property class.
     #We can now make calls to the _get and _set methods by just using lives or level
-    #and therfore we go loger need to use () brackes to call the methods 
+    #and therfore we go longer need to use () brackes to call the methods 
     
     lives = property(_get_lives, _set_lives)
-    level = property(_get_level, _set_level)        
-        
+    level = property(_get_level, _set_level)  
+    
+    #Below is the same as property method above only using property deckorator
+    @property
+    def score(self):
+        return self._score 
+    
+    @score.setter
+    def score(self, score):
+        self._score = score
     
     
     def __str__(self):
@@ -89,7 +97,7 @@ class Player(object):
             
             
         '''
-        return f"Name {self.name}, Lives {self.lives}, Level {self._level}, Score {self.score}"
+        return f"Name {self.name}, Lives {self.lives}, Level {self._level}, Score {self._score}"
         
         
         

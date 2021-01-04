@@ -6,7 +6,7 @@ Adam = Player("Adam")
 print(Adam.name)
 print(Adam.lives)
 print(Adam._level)
-print(Adam.score)
+print(Adam._score)
 
 #printing out lives attribute using _get_lives method
 print(Adam._get_lives())
@@ -35,12 +35,16 @@ print("-" * 30)
 
 #using the level the property method in player class to pass 2 as arg into _set_level method
 Adam.level = 2
-print(Adam.score)
+print(Adam._score)
 
 Adam.level += 5
 print(Adam)
 
 Adam.level = 3
+print(Adam)
+
+#accsessing score property in player class to change the score
+Adam.score = 500
 print(Adam)
 
 

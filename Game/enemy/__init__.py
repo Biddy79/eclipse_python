@@ -18,4 +18,9 @@ class Enemy:
 
 #class Troll inherits from Enemy
 class Troll(Enemy):
-    pass
+    
+    def __init__(self, name):
+        super().__init__(name=name, hit_points=23, lives=1)
+        
+    def grunt(self):
+        print(f"Me {self.name}. {self.name} stomp you")

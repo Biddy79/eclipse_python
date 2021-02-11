@@ -1,4 +1,4 @@
-from enemy import Enemy, Troll
+from enemy import Enemy, Troll, vampier
 
 #object instantiated from Enemy class using default args
 basic_enemy = Enemy()
@@ -27,6 +27,26 @@ brother = Troll("Urg")
 print(f"brother - {brother}")
 
 ugly_troll.grunt()
+ugly_troll.take_damage(2)
 another_troll.grunt()
+another_troll.take_damage(1)
 brother.grunt()
+brother.take_damage(3)
+
+
+
+John = vampier("John")
+print(f"John - {John}")
+
+John.take_damage(3)
+
+print("-" * 40)
+
+while John.alive:
+    John.take_damage(1)
+    print(John)
+
+
+
+
 

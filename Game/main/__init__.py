@@ -44,7 +44,7 @@ print("-" * 40)
 
 while John.alive:
     John.take_damage(1)
-    print(John)
+    #print(John)
 
 
 

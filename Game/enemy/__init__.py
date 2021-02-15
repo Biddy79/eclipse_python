@@ -33,7 +33,7 @@ class Troll(Enemy):
     def grunt(self):
         print(f"Me {self.name}. {self.name} stomp you")
         
-        
+#class vampier inherits from Enemy      
 class vampier(Enemy):
     
     def __init__(self, name):
@@ -49,7 +49,21 @@ class vampier(Enemy):
     def take_damage(self, damage):
         if not self.dodges():
             super().take_damage(damage = damage)
+            
         
+#class vampier inherits from Enemy         
+class Kingvampier(vampier):
+    def __init__(self, name):
+        super().__init__(name)
+        self.hit_points = 140
+        
+    def take_damage(self, damage):
+        super().take_damage(damage = damage//4)
+    
+        
+    
+        
+    
     
         
     

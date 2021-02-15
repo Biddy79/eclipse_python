@@ -1,4 +1,4 @@
-from enemy import Enemy, Troll, vampier
+from enemy import Enemy, Troll, vampier, Kingvampier
 
 #object instantiated from Enemy class using default args
 basic_enemy = Enemy()
@@ -45,6 +45,14 @@ print("-" * 40)
 while John.alive:
     John.take_damage(1)
     #print(John)
+    
+print("-" * 40)
+
+Bob = Kingvampier("Bob")
+print(Bob)
+
+while Bob.alive:
+    Bob.take_damage(12)
 
 
 

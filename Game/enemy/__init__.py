@@ -28,6 +28,8 @@ class Enemy:
 class Troll(Enemy):
     
     def __init__(self, name):
+                        #Below we must add same number of args when calling a super class constructor
+                        #UNLESS THE VALUES ARE PRE SET IN THE SUPER CLASS LIKE ON LINE 4 IN Enemy CLASS!!!
         super().__init__(name=name, hit_points=23, lives=1)
         
     def grunt(self):

@@ -5,7 +5,7 @@ Created on 18 Feb 2021
 '''
 class Tag():
     
-    def __inti__(self, name, contents):
+    def __init__(self, name, contents):
         self.start_tag = f'<{name}>'
         self.end_tag = f'</{name}>'
         self.contents = contents
@@ -13,8 +13,8 @@ class Tag():
     def __str__(self):
         return f"{self.start_tag}{self.contents}{self.end_tag}"
     
-    def display(self):
-        print(self)
+    def display(self, file=None):
+        print(self, file=file)
        
        
 class DocType(Tag):
@@ -37,20 +37,47 @@ class Body(Tag):
         self._body_contentes = []
         
     def add_tag(self,name, contents):
+        #new_tag object of Tag class
         new_tag = Tag(name, contents)
-        self._body_contents.append(new_tag)
+        self._body_contentes.append(new_tag)
         
-        
-    def display(self):
+    #overwrites display method in Tag class!! 
+    def display(self, file=None):
         for tag in self._body_contentes:
             self.contents += str(tag)
             
-        super().display()
+        super().display(file=file)
         
+#Using composition here
+##Composition is when a Class contains instances objects from an other Class
+class HtmlDoc():
+    
+    def __init__(self):
+        self._doc_type = DocType()
+        self._head = Head()
+        self._body = Body()
         
+    def add_tag(self, name, contents):
+        self._body.add_tag(name, contents)
+    
+    def display(self, file=None):
+        self._doc_type.display(file=file)
+        print('<html>', file=file)
+        self._head.display(file=file)
+        self._body.display(file=file)
+        print('</html>', file=file)
         
-        
-        
+if __name__ == '__main__':
+    my_page = HtmlDoc()
+    my_page.add_tag('h1', 'main heading')
+    my_page.add_tag('h2', 'sub-heading')
+    my_page.add_tag('p', 'This is a paragrraph that will appear on the page')
+    my_page.display()
+    
+    
+    
+    
+    
         
         
         

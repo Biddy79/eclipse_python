@@ -49,7 +49,7 @@ class Body(Tag):
         super().display(file=file)
         
 #Using composition here
-##Composition is when a Class contains instances objects from an other Class
+#Composition is when a Class contains instances objects from an other Class
 class HtmlDoc():
     
     def __init__(self):
@@ -71,11 +71,9 @@ if __name__ == '__main__':
     my_page = HtmlDoc()
     my_page.add_tag('h1', 'main heading')
     my_page.add_tag('h2', 'sub-heading')
-    my_page.add_tag('p', 'This is a paragrraph that will appear on the page')
+    my_page.add_tag('p', 'This is a paragraph that will appear on the page')
     my_page.display()
-    
-    
-    
+
     
     
         

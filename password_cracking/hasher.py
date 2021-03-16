@@ -6,7 +6,7 @@ Created on 12 Mar 2021
 hash user input to md5, sha1, sah224, sha256 and sha512
 
 '''
-
+#!/usr/bin/pyhton3
 import hashlib
 #ask user to pass in a password to hash
 hash_value = input("* Enter a password to hash: ")

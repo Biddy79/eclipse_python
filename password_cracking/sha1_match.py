@@ -4,7 +4,7 @@ Created on 15 Mar 2021
 @author: Adam
 '''
 
-#!/usr/bin/python
+#!/usr/bin/python3
 
 from urllib.request import urlopen
 import hashlib

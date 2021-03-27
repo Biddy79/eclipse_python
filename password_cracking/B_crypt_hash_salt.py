@@ -3,6 +3,7 @@ Created on 25 Mar 2021
 
 @author: Adam
 '''
+
 import bcrypt
 
 #b befor a sting will cast to byte type object

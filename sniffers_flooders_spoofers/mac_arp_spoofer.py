@@ -8,6 +8,7 @@ Created on 13 Apr 2021
 
 #from scapy.layers.l2 import ARP, Ether
 from scapy.all import *
+#import scapy.all as scapy
 
 def restore(destination_ip, source_ip):
     target_mac = get_mac(destination_ip)

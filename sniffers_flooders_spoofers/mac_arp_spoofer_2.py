@@ -6,7 +6,7 @@ Created on 29 May 2021
 #!/usr/bin/python3
 
 #use below imoprt when running in linux
-#from scapy.all import Ether, ARP, srp, send
+#, srp, send
 
 from scapy.all import *
 

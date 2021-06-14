@@ -30,21 +30,40 @@ except:
 #untill it reaches port 65535 as is inside the while Ture loop.
 
 while True:
-#setting the packet to recive the first part of the tuple
-#a string in bytes format. The second part, packet[1]
-#would be the address as stated on line 25 above
+    #setting the packet to recive the first part of the tuple
+    #a string in bytes format. The second part, packet[1]
+    #would be the address as stated on line 25 above
     packet = s.recvfrom(65535)
-    packet = packet[0] 
     
-#setting eth_lenght to be 14.
-#used below to set number of bytes we require 
-#from (bytes)string info given in packet[0] above 
-    eth_length = 14
-     
-#selecting first 14 bytes from first packet[0]
-#the first 14 bytes holds the eth info 
-    eth_header = packet[:eth_length] 
+    packet = packet[0]
     
-
+    #selecting first 14 bytes from first packets[0]
+    #the first 14 bytes holds the ether info 
+    eth_lenght = 14
+    eth_header = packet[:eth_lenght] 
     
-    # may be usfull       print(receivedBytes[0].decode());!!!!!!!!
+    #unpack from struct takes binary data and corectly formats it from C structs
+    
+    #First parameter ! is the format type (network=big-endian) of data
+    #there are many other formats that can be use !, @, =, <, and >
+    
+    #6 is the number of bytes from the eth_header
+    #s identifies these 6 bytes as a char[] (string). the first 6 bytes are the 
+    #destination mac address. 
+    
+    #We then do the same to get the next 6 bytes
+    #which is the source mac address.
+    
+    #Finaly we have the H parameter which is the ether protocol. The type is an
+    #unsigned short. (an unsigned short is 2 bytes) 
+    #this all together makes 14 bytes
+    eth = unpack('!6s6sH', eth_header)
+    
+    #Saving the 3rd eliment from eth object above. eth[2] which is H. This is 
+    #the ether protocol which is a number representing tcp, udp, http ect ...
+    #agine we use socket.ntohs to convert to host format 
+    eth_protocol = socket.ntohs(eth[2])
+    
+    
+    
+    

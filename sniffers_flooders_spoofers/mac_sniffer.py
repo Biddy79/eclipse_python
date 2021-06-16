@@ -9,9 +9,21 @@ Created on 6 Jun 2021
 import socket
 from struct import *
 
-#ntohs() function of socket module converts a 16 bit integer
+#eth_addr() takes as arg, each byte of type char from the recived packet[0]
+#
+#
+def eth_addr(mac_char):
+    mac_address = "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x:" % (ord(mac_char[0]), 
+                                                      ord(mac_char[1]), 
+                                                      ord(mac_char[2]), 
+                                                      ord(mac_char[3]),
+                                                      ord(mac_char[4]), 
+                                                      ord(mac_char[5]),)
+    return mac_address
+
+#ntohs() function of socket module converts mac_char 16 bit integer
 #from network format to host format. 
-#parameter 0x0003 in hexadecimal for the number 3 and there we are using 
+#parameter 0x0003 in hexadecimal for the number 3 and we are using 
 #GGP protocol. you can also do the same using getprotoent(GGP)
 
 try:                                                     
@@ -20,7 +32,7 @@ except:
     print("[!!] Error on creating socket object")
     exit(0)
 
-#The recvfrom() method Python's socket class, reads a number of bytes sent from an UDP socket.
+#The recvfrom() method Python's socket class, reads a number of bytes sent from a socket.
 
 #The return value is a pair (string, address) where string is a string representing
 #the data (remember data is in bytes!) received and address is the address of the socket sending the data.
@@ -62,7 +74,16 @@ while True:
     #Saving the 3rd eliment from eth object above. eth[2] which is H. This is 
     #the ether protocol which is a number representing tcp, udp, http ect ...
     #agine we use socket.ntohs to convert to host format 
+    #(ntohs Convert 16-bit positive integers from network to host byte order)
     eth_protocol = socket.ntohs(eth[2])
+    
+    #Now we must print out the formated data to show dst MAC, src MAC, and 
+    #eth_protocol. For dst and src MAC we will need a function eth_addr to
+    #print out the binary data in a string format. But as for eth_protocol we 
+    #can just cast to a string str(eth_protocol) as we have allready seperated 
+    #this binary data and stored it in the veriable eth_protocol on line 66
+    print('[+] Destination MAC:' + eth_addr(packet[0:6]) + '[+] Source MAC:' +
+          eth_addr(packet[6:12]) + '[+] Protocol: ' + str(eth_protocol))   
     
     
     

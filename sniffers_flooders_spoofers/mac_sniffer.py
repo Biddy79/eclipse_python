@@ -10,8 +10,11 @@ import socket
 from struct import *
 
 #eth_addr() takes as arg, each byte of type char from the recived packet[0]
-#
-#
+#format string % is place holder .2x attaches two hexadecimal numbers
+#the ord() function takes the binery numbers and converts them to a ASCII
+#char characters which are placed in the string %.2x 
+#the string is stored in variable mac_address and retured from function
+#to be printed out below on lines 88 and 89 
 def eth_addr(mac_char):
     mac_address = "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x:" % (ord(mac_char[0]), 
                                                       ord(mac_char[1]), 
@@ -44,7 +47,7 @@ except:
 while True:
     #setting the packet to recive the first part of the tuple
     #a string in bytes format. The second part, packet[1]
-    #would be the address as stated on line 25 above
+    #would be the address as stated on lines 40 and 41 above
     packet = s.recvfrom(65535)
     
     packet = packet[0]
@@ -81,7 +84,7 @@ while True:
     #eth_protocol. For dst and src MAC we will need a function eth_addr to
     #print out the binary data in a string format. But as for eth_protocol we 
     #can just cast to a string str(eth_protocol) as we have allready seperated 
-    #this binary data and stored it in the veriable eth_protocol on line 66
+    #this binary data and stored it in the veriable eth_protocol on line 81
     print('[+] Destination MAC:' + eth_addr(packet[0:6]) + '[+] Source MAC:' +
           eth_addr(packet[6:12]) + '[+] Protocol: ' + str(eth_protocol))   
     

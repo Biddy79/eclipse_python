@@ -9,12 +9,12 @@ Created on 6 Jun 2021
 import socket
 from struct import *
 
-#eth_addr() takes as arg, each byte of type char from the recived packet[0]
+#eth_addr() takes as arg, each byte of type char from the received packet[0]
 #format string % is place holder .2x attaches two hexadecimal numbers
-#the ord() function takes the binery numbers and converts them to a ASCII
+#the ord() function takes the binary numbers and converts them to a ASCII
 #char characters which are placed in the string %.2x 
 #the string is stored in variable mac_address and retured from function
-#to be printed out below on lines 88 and 89 
+#to be printed out below on lines 89 and 90 
 def eth_addr(mac_char):
     mac_address = "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x:" % (ord(mac_char[0]), 
                                                       ord(mac_char[1]), 
@@ -27,7 +27,8 @@ def eth_addr(mac_char):
 #ntohs() function of socket module converts mac_char 16 bit integer
 #from network format to host format. 
 #parameter 0x0003 in hexadecimal for the number 3 and we are using 
-#GGP protocol. you can also do the same using getprotoent(GGP)
+#GGP protocol. you can also do the same using getprotoent("GGP")
+#socket.ntohs(0x0003)
 
 try:                                                     
     s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(0x0003))
@@ -47,7 +48,7 @@ except:
 while True:
     #setting the packet to recive the first part of the tuple
     #a string in bytes format. The second part, packet[1]
-    #would be the address as stated on lines 40 and 41 above
+    #would be the address as stated on lines 41 and 42
     packet = s.recvfrom(65535)
     
     packet = packet[0]
@@ -57,10 +58,10 @@ while True:
     eth_lenght = 14
     eth_header = packet[:eth_lenght] 
     
-    #unpack from struct takes binary data and corectly formats it from C structs
+    #unpack from struct takes binary data from C structs and corectly formats it 
     
     #First parameter ! is the format type (network=big-endian) of data
-    #there are many other formats that can be use !, @, =, <, and >
+    #there are other formats that can be use !, @, =, <, and >
     
     #6 is the number of bytes from the eth_header
     #s identifies these 6 bytes as a char[] (string). the first 6 bytes are the 
@@ -69,7 +70,7 @@ while True:
     #We then do the same to get the next 6 bytes
     #which is the source mac address.
     
-    #Finaly we have the H parameter which is the ether protocol. The type is an
+    #Finally we have the H parameter which is the ether protocol. The type is an
     #unsigned short. (an unsigned short is 2 bytes) 
     #this all together makes 14 bytes
     eth = unpack('!6s6sH', eth_header)
@@ -80,11 +81,11 @@ while True:
     #(ntohs Convert 16-bit positive integers from network to host byte order)
     eth_protocol = socket.ntohs(eth[2])
     
-    #Now we must print out the formated data to show dst MAC, src MAC, and 
+    #Now we must print out the formatted data to show dst MAC, src MAC, and 
     #eth_protocol. For dst and src MAC we will need a function eth_addr to
     #print out the binary data in a string format. But as for eth_protocol we 
-    #can just cast to a string str(eth_protocol) as we have allready seperated 
-    #this binary data and stored it in the veriable eth_protocol on line 81
+    #can just cast to a string str(eth_protocol) as we have already separated 
+    #this binary data and stored it in the vriable eth_protocol on line 82
     print('[+] Destination MAC:' + eth_addr(packet[0:6]) + '[+] Source MAC:' +
           eth_addr(packet[6:12]) + '[+] Protocol: ' + str(eth_protocol))   
     

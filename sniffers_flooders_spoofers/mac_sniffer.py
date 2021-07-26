@@ -11,17 +11,20 @@ from struct import *
 
 #eth_addr() takes as arg, each byte of type char from the received packet[0]
 #format string % is place holder .2x attaches two hexadecimal numbers
+
 #the ord() function takes the binary numbers and converts them to a ASCII
+#ord() FUNCTION NOT NEED IN PYHTON3
+
 #char characters which are placed in the string %.2x 
 #the string is stored in variable mac_address and retured from function
 #to be printed out below on lines 89 and 90 
 def eth_addr(mac_char):
-    mac_address = "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x:" % (ord(mac_char[0]), 
-                                                      ord(mac_char[1]), 
-                                                      ord(mac_char[2]), 
-                                                      ord(mac_char[3]),
-                                                      ord(mac_char[4]), 
-                                                      ord(mac_char[5]),)
+    mac_address = "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x:" % ((mac_char[0]), 
+                                                      (mac_char[1]), 
+                                                      (mac_char[2]), 
+                                                      (mac_char[3]),
+                                                      (mac_char[4]), 
+                                                      (mac_char[5]),)
     return mac_address
 
 #ntohs() function of socket module converts mac_char 16 bit integer

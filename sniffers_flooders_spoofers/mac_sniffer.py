@@ -13,7 +13,8 @@ from struct import *
 #format string % is place holder .2x attaches two hexadecimal numbers
 
 #the ord() function takes the binary numbers and converts them to a ASCII
-#ord() FUNCTION NOT NEED IN PYHTON3
+#ord() FUNCTION NOT NEED IN PYHTON3 due to socket.recvfrom returns string pair (bytes, address)
+#python2 socket.recvfrom returns pair (string, address) and therefor ord function would be needed
 
 #char characters which are placed in the string %.2x 
 #the string is stored in variable mac_address and retured from function

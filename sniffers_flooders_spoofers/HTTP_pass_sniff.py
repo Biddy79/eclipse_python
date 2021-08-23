@@ -8,7 +8,7 @@ Created on 23 Aug 2021
 #pip install scapy and scapy_http befor running this script if note aready installed
 
 import scapy.all as scapy
-from scapy_http import http/
+from scapy_http import http
 
 def sniff(interface):
     scapy.sniff(iface=interface, store=False, prn=process_packets)

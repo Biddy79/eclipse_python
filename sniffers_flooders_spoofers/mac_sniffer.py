@@ -52,7 +52,7 @@ except:
 while True:
     #setting the packet to recive the first part of the tuple
     #a string in bytes format. The second part, packet[1]
-    #would be the address as stated on lines 41 and 42
+    #would be the address as stated on lines 45 and 46
     packet = s.recvfrom(65535)
     
     packet = packet[0]

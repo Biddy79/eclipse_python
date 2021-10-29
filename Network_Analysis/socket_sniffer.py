@@ -21,24 +21,24 @@ def analyze_ether_header(data_recv):
     src_mac = binascii.hexlify(eth_hdr[1])
     proto = eth_hdr[2] >> 8
     
-    #set packet data byte to start from remaning 14 bytes
-    data = data_recv[14:]
-    
     print("____________ETHERNET HEADER____________")
     print(f"Destination MAC: {dst_mac[0:2]}:{dst_mac[2:4]}:{dst_mac[4:6]}:{dst_mac[6:8]}:{dst_mac[8:10]}:{dst_mac[10:12]}")
     print(f"Source MAC: {src_mac[0:2]}:{src_mac[2:4]}:{src_mac[4:6]}:{src_mac[6:8]}:{src_mac[8:10]}:{src_mac[10:12]}")
     print(f"Protocol: {proto}")
     
-    #check packet to see if it is ip protocal
+    #check proto (on line 22) to see if it is ip protocal
     if proto == 0x08:
         ip_bool = True
+        
+    #MOVE PACKET DATA 14 FORWARD BYTES!!
+    data = data_recv[14:]
     
-    #return packet bytes starting at 14 and protocoal type
+    #return packet data (this as now been moved on 14 bytes. see line: 34) and protocoal type
     return data, ip_bool
 
 
 # >> (Right-Shift) and << (Left-Shift) Operator: Moves the bits the number
-# of positions specified by the second operand in the right or left direction
+# positions specified by the second operand in the right or left direction
 # 0x0F is a hexadecimal number which equals 15 in decimal
 def analyze_ip_header(data_recv):
     ip_hdr = struct.unpack('!6H4s4s', data_recv[:20])
@@ -69,9 +69,6 @@ def analyze_ip_header(data_recv):
     print(f"Source IP: {src_address}")
     print(f"Destination IP: {dst_address}")
     
-    #set packet data byte to start from remaning 20 bytes
-    data = data_recv[20:]
-    
     #check protocal type
     if ip_proto == 6:
         tcp_udp = "TCP"
@@ -79,8 +76,11 @@ def analyze_ip_header(data_recv):
         tcp_udp = "UDP"
     else:
         tcp_udp = "OTHER"
+        
+    #MOVE PACKET DATA 20 FORWARD BYTES!!
+    data = data_recv[20:]
     
-    #return packet bytes starting at 20 and protocoal type
+    #return packet data (this as now been moved on 20 bytes. see line: 81) and protocoal type
     return data, tcp_udp
     
     
@@ -107,13 +107,49 @@ def analyze_tcp_header(data_recv):
     
     
     print("______________TCP HEADER_______________")
+    print(f"Source: {src_port}")
+    print(f"Destination: {dst_port}")
+    print(f"Source: {src_port}")
+    print(f"Seq: {seq_num}")
+    print(f"ACK: {ack_num}")
+    print(f"Data Offset: {data_offset}")
+    
+    print("___FLAGS___ ")
+    print(f"flag-URG: {urg}")
+    print(f"flag-ACK: {ack}")
+    print(f"flag-PSH: {psh}")
+    print(f"flag-RST: {rst}")
+    print(f"flag-SYN: {syn}")
+    print(f"flag-FIN: {fin}")
+    
+    print(f"Window size: {window}")
+    print(f"Checksum: {checksum}")
         
-    #return packet bytes moving 20 bytes forward agine
+    #MOVE PACKET DATA 20 FORWARD BYTES!!
     data = data_recv[20:]
-        
+    
+    #return packet data (this as now been moved on 20 bytes. see line: 128) 
     return data
     
-
+def analyze_udp_header(data_recv):
+    udp_hdr = struct.unpack('!4H', data_recv[:8])
+    src_port = udp_hdr[0]
+    dst_port = udp_hdr[1]
+    lenght = udp_hdr[2]
+    checksum = udp_hdr[3]
+    
+    print("______________UDP HEADER_______________")
+    print(f"Source: {src_port}")
+    print(f"Destination: {dst_port}")
+    print(f"Lenght {lenght}")
+    print(f"Checksum {checksum}")
+    
+    ##MOVE PACKET DATA 8 FORWARD BYTES!!
+    data = data_recv[8:]
+    
+    #return packet data (this as now been moved on 20 bytes. see line: 147) 
+    return data
+    
         
     
 def main():
@@ -124,10 +160,10 @@ def main():
     data_recv = sniffer_socket.recv(2048)
     os.system('clear')
     
-    #data returned from analyze_ether_header moved forward 14 bytes and stored in data_recv 
+    #data returned from analyze_ether_header as moved forward 14 bytes and stored in data_recv 
     data_recv, ip_bool = analyze_ether_header(data_recv)
     
-    #if ip header is true
+    #if ip header is true 
     #data returned from analyze_ip_header moved forward 20 bytes and stored in data_recv
     #Set value of tcp_udp to "TCP" or "UDP
     if ip_bool:
@@ -135,8 +171,8 @@ def main():
     else:
         return
     
-    #run analyze_tcp_header or analyze_udp_header function based on tcp_udp return value
-    #set in analyze_ip_header
+    #run analyze_tcp_header or analyze_udp_header function based on tcp_udp 
+    #return value set in analyze_ip_header
     #Agine data_recv will be moved forward 20 bytes
     if tcp_udp == "TCP":
         data_recv, tcp_udp = analyze_tcp_header(data_recv)

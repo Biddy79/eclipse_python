@@ -3,15 +3,13 @@ Created on 18 Oct 2021
 
 @author: adam
 '''
-#!/usr/bin/pyhton3
+#!/usr/bin/python3
 
 import socket
 import os, sys
 import struct
 import binascii
 
-sock_created = False
-sniffer_socket = 0
 
 def analyze_ether_header(data_recv):
     ip_bool = False
@@ -91,7 +89,7 @@ def analyze_tcp_header(data_recv):
     seq_num = tcp_hdr[2]
     ack_num = tcp_hdr[3]
     data_offset = tcp_hdr[4] >> 12
-    reserved = (tcp_hdr[4] >> 6) & 0x03ff
+    reserved = (tcp_hdr[5] >> 6) & 0x03ff
     flags = tcp_hdr[4] & 0x003f
     window = tcp_hdr[5]
     checksum = tcp_hdr[6]
@@ -153,6 +151,9 @@ def analyze_udp_header(data_recv):
         
     
 def main():
+    sock_created = False
+    sniffer_socket = 0
+    
     if sock_created == False:
         sniffer_socket = socket.socket(socket.PF_PACKET, socket.SOCK_RAW, socket.htons(0X0003))
         sock_created = True
@@ -175,9 +176,9 @@ def main():
     #return value set in analyze_ip_header
     #Agine data_recv will be moved forward 20 bytes
     if tcp_udp == "TCP":
-        data_recv, tcp_udp = analyze_tcp_header(data_recv)
+        data_recv = analyze_tcp_header(data_recv)
     elif tcp_udp == "UDP":
-        data_recv, tcp_udp = analyze_udp_header(data_recv)
+        data_recv = analyze_udp_header(data_recv)
     else:
         return
         
